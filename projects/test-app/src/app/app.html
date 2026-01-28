@@ -1,0 +1,19 @@
+<h1>Angular Flexmonster Showcase</h1>
+<h2 id="flexmonster">Flexmonster</h2>
+<fm-button size="sm" (click)="openFieldList()">Open Field List</fm-button>
+<fm-button size="sm" (click)="changeState()">Change state</fm-button>
+
+<flexmonster-composite #flex [state]="stateFmFlexmonster" [options]="optionsFmPivot"></flexmonster-composite>
+
+<h2 id="flat">Flat</h2>
+<flexmonster-toolbar [state]="stateFmFlat"></flexmonster-toolbar>
+<flexmonster-flat-table [state]="stateFmFlat"></flexmonster-flat-table>
+<flexmonster-flat-field-list [state]="stateFmFlat"></flexmonster-flat-field-list>
+
+<h2 id="flat">Pivot</h2>
+<flexmonster-toolbar [state]="stateFmPivot"></flexmonster-toolbar>
+<flexmonster-pivot-table [state]="stateFmPivot"></flexmonster-pivot-table>
+<flexmonster-pivot-field-list [state]="stateFmPivot"></flexmonster-pivot-field-list>
+
+<h2 id="toolkit">Toolkit elements use example</h2>
+<fm-button size="sm" [disabled]="disabled">Custom Button</fm-button>
