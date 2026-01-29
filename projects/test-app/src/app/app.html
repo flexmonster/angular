@@ -1,19 +1,30 @@
 <h1>Angular Flexmonster Showcase</h1>
 <h2 id="flexmonster">Flexmonster</h2>
-<fm-button size="sm" (click)="openFieldList()">Open Field List</fm-button>
-<fm-button size="sm" (click)="changeState()">Change state</fm-button>
+<fm-button size="sm" (click)="openFieldListComposite()">Open Field List</fm-button>
+<fm-button size="sm" (click)="setViewType('flat')">Flat view</fm-button>
+<fm-button size="sm" (click)="setViewType('pivot')">Pivot view</fm-button>
 
-<flexmonster-composite #flex [state]="stateFmFlexmonster" [options]="optionsFmPivot"></flexmonster-composite>
+<!-- Custom toolbar that uses the injected service -->
+<app-toolbar [flexmonster]="flex" serviceId="main-grid"></app-toolbar>
+
+<flexmonster-composite #flex [state]="stateFmFlexmonster" [options]="optionsFmPivot" serviceId="main-grid"></flexmonster-composite>
 
 <h2 id="flat">Flat</h2>
-<flexmonster-toolbar [state]="stateFmFlat"></flexmonster-toolbar>
-<flexmonster-flat-table [state]="stateFmFlat"></flexmonster-flat-table>
-<flexmonster-flat-field-list [state]="stateFmFlat"></flexmonster-flat-field-list>
+<fm-button size="sm" (click)="openFieldListFlat()">Open field list</fm-button>
+<fm-button size="sm" (click)="getCellFlat()">Get 1st cell</fm-button>
 
-<h2 id="flat">Pivot</h2>
-<flexmonster-toolbar [state]="stateFmPivot"></flexmonster-toolbar>
-<flexmonster-pivot-table [state]="stateFmPivot"></flexmonster-pivot-table>
-<flexmonster-pivot-field-list [state]="stateFmPivot"></flexmonster-pivot-field-list>
+<flexmonster-toolbar #toolbarFlat  [state]="stateFmFlat"></flexmonster-toolbar>
+<flexmonster-flat-table #flat [state]="stateFmFlat"></flexmonster-flat-table>
+<flexmonster-flat-field-list #fieldListFlat [state]="stateFmFlat"></flexmonster-flat-field-list>
+
+<h2 id="pivot">Pivot</h2>
+<fm-button size="sm" (click)="openFieldListPivot()">Open field list</fm-button>
+<fm-button size="sm" (click)="getCellPivot()">Get 1st cell</fm-button>
+
+<flexmonster-toolbar #toolbarPivot [state]="stateFmPivot"></flexmonster-toolbar>
+<flexmonster-pivot-table #pivot [state]="stateFmPivot"></flexmonster-pivot-table>
+<flexmonster-pivot-field-list #fieldListPivot [state]="stateFmPivot"></flexmonster-pivot-field-list>
 
 <h2 id="toolkit">Toolkit elements use example</h2>
 <fm-button size="sm" [disabled]="disabled">Custom Button</fm-button>
+<fm-selectable-list data-provider="1,2,3"></fm-selectable-list>
