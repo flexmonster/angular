@@ -13,7 +13,7 @@ __TODO:__<br>
 - [x] Test components usage
 - [x] Test API usage
 - [x] Test DI - possible, but does not give much for us
-- [ ] Test SSR
+- [x] Test SSR - does not work with `npm link`
 - [ ] Add real `@flexmonster/flexmonster` npm package
 
 The project uses `@flexmonster/flexmonster` added by `npm link`, we need to include proper lib in `package.json` after it's ready.
