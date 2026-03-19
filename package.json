@@ -1,5 +1,9 @@
 {
   "name": "@flexmonster/angular",
+  "repository": "https://github.com/flexmonster/angular",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -30,6 +34,7 @@
     "@angular/forms": "^21.1.0",
     "@angular/platform-browser": "^21.1.0",
     "@angular/router": "^21.1.0",
+    "@flexmonster/flexmonster": "^3.0.0-beta.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

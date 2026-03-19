@@ -6,6 +6,7 @@
     "@angular/core": "^21.1.0"
   },
   "dependencies": {
+    "@flexmonster/flexmonster": "^3.0.0-beta.1",
     "tslib": "^2.3.0"
   },
   "sideEffects": false
