@@ -1,6 +1,4 @@
-import { Component, ElementRef, Inject, Injectable, Input } from '@angular/core';
-//@ts-ignore
-import { FlatFieldList } from '@flexmonster/flexmonster';
+import { afterNextRender, Component, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: 'flexmonster-flat-field-list',
@@ -12,17 +10,18 @@ export class FlexmonsterFlatFieldList {
   @Input() options: any;
 
   private root: HTMLElement;
-  public flatFieldList: FlatFieldList;
+  public flatFieldList: any;
 
   constructor(el: ElementRef) {
     this.root = <HTMLElement>el.nativeElement;
-  }
-
-  ngAfterViewInit() {
-    const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this.flatFieldList = FlatFieldList(container, {
-      "state": this.state,
-      "options": this.options 
+    afterNextRender(async () => {
+      //@ts-ignore
+      const { FlatFieldList } = await import('@flexmonster/flexmonster');
+      const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
+      this.flatFieldList = FlatFieldList(container, {
+        "state": this.state,
+        "options": this.options
+      });
     });
   }
 

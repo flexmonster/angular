@@ -1,12 +1,11 @@
 <h1>Angular Flexmonster Showcase</h1>
 <h2 id="flexmonster">Flexmonster</h2>
+
 <fm-button size="sm" (click)="openFieldListComposite()">Open Field List</fm-button>
 <fm-button size="sm" (click)="setViewType('flat')">Flat view</fm-button>
 <fm-button size="sm" (click)="setViewType('pivot')">Pivot view</fm-button>
 
-<!-- Custom toolbar that uses the injected service -->
 <app-toolbar [flexmonster]="flex" serviceId="main-grid"></app-toolbar>
-
 <flexmonster-composite #flex [state]="stateFmFlexmonster" [options]="optionsFmPivot" serviceId="main-grid"></flexmonster-composite>
 
 <h2 id="flat">Flat</h2>

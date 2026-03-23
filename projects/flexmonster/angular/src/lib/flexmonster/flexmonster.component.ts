@@ -1,6 +1,7 @@
-import { Component, ElementRef, Inject, Injectable, Input } from '@angular/core';
+//use
+import { afterNextRender, Component, ElementRef, Inject, Injectable, Input } from '@angular/core';
 //@ts-ignore
-import { Flexmonster } from '@flexmonster/flexmonster';
+// import { Flexmonster } from '@flexmonster/flexmonster';
 
 @Component({
   selector: 'flexmonster-composite',
@@ -12,17 +13,18 @@ export class FlexmonsterComposite {
   @Input() options: any;
 
   private root: HTMLElement;
-  public flexmonster: Flexmonster.Pivot;
+  public flexmonster: any;
 
   constructor(el: ElementRef) {
     this.root = <HTMLElement>el.nativeElement;
-  }
-
-  ngAfterViewInit() {
-    const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this.flexmonster = Flexmonster(container, {
-      "state": this.state,
-      "options": this.options 
+    afterNextRender(async () => {
+      //@ts-ignore
+      const { Flexmonster } = await import('@flexmonster/flexmonster');
+      const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
+      this.flexmonster = Flexmonster(container, {
+        "state": this.state,
+        "options": this.options
+      });
     });
   }
 

@@ -52,7 +52,15 @@
             ],
             "styles": [
               "projects/test-app/src/styles.css"
-            ]
+            ],
+            "server": "projects/test-app/src/main.server.ts",
+            "outputMode": "server",
+            "security": {
+              "allowedHosts": []
+            },
+            "ssr": {
+              "entry": "projects/test-app/src/server.ts"
+            }
           },
           "configurations": {
             "production": {

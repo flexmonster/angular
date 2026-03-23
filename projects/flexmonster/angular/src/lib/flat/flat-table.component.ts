@@ -1,6 +1,4 @@
-import { Component, ElementRef, Inject, Injectable, Input } from '@angular/core';
-//@ts-ignore
-import { FlatTable } from '@flexmonster/flexmonster';
+import { afterNextRender, Component, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: 'flexmonster-flat-table',
@@ -12,17 +10,18 @@ export class FlexmonsterFlat {
   @Input() options: any;
 
   private root: HTMLElement;
-  public flatTable: FlatTable;
+  public flatTable: any;
 
   constructor(el: ElementRef) {
     this.root = <HTMLElement>el.nativeElement;
-  }
-
-  ngAfterViewInit() {
-    const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this.flatTable = FlatTable(container, {
-      "state": this.state,
-      "options": this.options 
+    afterNextRender(async () => {
+      //@ts-ignore
+      const { FlatTable } = await import('@flexmonster/flexmonster');
+      const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
+      this.flatTable = FlatTable(container, {
+        "state": this.state,
+        "options": this.options
+      });
     });
   }
 

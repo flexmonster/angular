@@ -1,6 +1,4 @@
-import { Component, ElementRef, Inject, Injectable, Input } from '@angular/core';
-//@ts-ignore
-import { PivotFieldList } from '@flexmonster/flexmonster';
+import { afterNextRender, Component, ElementRef, Input } from '@angular/core';
 
 @Component({
     selector: 'flexmonster-pivot-field-list',
@@ -12,17 +10,18 @@ export class FlexmonsterPivotFieldList {
     @Input() options: any;
 
     private root: HTMLElement;
-    public pivotFieldList: PivotFieldList;
+    public pivotFieldList: any;
 
     constructor(el: ElementRef) {
         this.root = <HTMLElement>el.nativeElement;
-    }
-
-    ngAfterViewInit() {
-        const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-        this.pivotFieldList = PivotFieldList(container, {
-            "state": this.state,
-            "options": this.options
+        afterNextRender(async () => {
+          //@ts-ignore
+          const { PivotFieldList } = await import('@flexmonster/flexmonster');
+          const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
+          this.pivotFieldList = PivotFieldList(container, {
+              "state": this.state,
+              "options": this.options
+          });
         });
     }
 

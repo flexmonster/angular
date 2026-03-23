@@ -1,6 +1,4 @@
-import { Component, ElementRef, Inject, Injectable, Input } from '@angular/core';
-//@ts-ignore
-import { Toolbar } from '@flexmonster/flexmonster';
+import { afterNextRender, Component, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: 'flexmonster-toolbar',
@@ -11,16 +9,17 @@ export class FlexmonsterToolbar {
   @Input() state: any;
 
   private root: HTMLElement;
-  public toolbar: Toolbar;
+  public toolbar: any;
 
   constructor(el: ElementRef) {
     this.root = <HTMLElement>el.nativeElement;
-  }
-
-  ngAfterViewInit() {
-    const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this.toolbar = Toolbar(container, {
-      "state": this.state,
+    afterNextRender(async () => {
+      //@ts-ignore
+      const { Toolbar } = await import('@flexmonster/flexmonster');
+      const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
+      this.toolbar = Toolbar(container, {
+        "state": this.state,
+      });
     });
   }
 

@@ -7,6 +7,7 @@ import { RouterOutlet } from '@angular/router';
 //Import Flexmonster Angular standalone components
 import { FlexmonsterComposite, FlexmonsterFlat, FlexmonsterPivot, FlexmonsterToolbar, FlexmonsterFlatFieldList, FlexmonsterPivotFieldList } from '../../../../dist/flexmonster/angular';
 
+
 //Import Flexmonster styles
 import '@flexmonster/flexmonster/flexmonster.css'
 
@@ -15,8 +16,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @Component({
 	selector: 'app-root',
-	imports: [RouterOutlet,ToolbarComponent, FlexmonsterComposite, FlexmonsterFlat, FlexmonsterPivot, FlexmonsterToolbar, FlexmonsterFlatFieldList, FlexmonsterPivotFieldList],
-    //imports: [RouterOutlet, ToolbarComponent, FlexmonsterModule], // Use module instead of individual components
+	imports: [ToolbarComponent, FlexmonsterComposite, FlexmonsterFlat, FlexmonsterPivot, FlexmonsterToolbar, FlexmonsterFlatFieldList, FlexmonsterPivotFieldList],
 	templateUrl: './app.html',
 	//Allow FM custom elements
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
