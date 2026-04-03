@@ -1,11 +1,11 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, signal, viewChild } from '@angular/core';
+import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, signal, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-//Import Flexmonster Angular module
-// import { FlexmonsterModule } from '../../../../dist/flexmonster/angular';
+//Import Flexmonster Angular SSR components
+import { FlexmonsterComposite, FlexmonsterFlatFieldList, FlexmonsterFlat, FlexmonsterPivotFieldList, FlexmonsterPivot, FlexmonsterToolbar } from '@flexmonster/angular/ssr';
 
-//Import Flexmonster Angular standalone components
-import { FlexmonsterComposite, FlexmonsterFlat, FlexmonsterPivot, FlexmonsterToolbar, FlexmonsterFlatFieldList, FlexmonsterPivotFieldList } from '../../../../dist/flexmonster/angular';
+//Import Flexmonster Angular CSR components
+// import { FlexmonsterComposite, FlexmonsterFlat, FlexmonsterPivot, FlexmonsterToolbar, FlexmonsterFlatFieldList, FlexmonsterPivotFieldList } from '@flexmonster/angular';
 
 
 //Import Flexmonster styles
@@ -13,16 +13,18 @@ import '@flexmonster/flexmonster/flexmonster.css'
 
 //Import Toolbar component
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { FMCompositeViewType, IFMCompositeOptionsInputParams, StateInputParams } from '@flexmonster/flexmonster';
+// import { DataSourceType, F16CompositeViewType } from '@flexmonster/flexmonster';
 
 @Component({
 	selector: 'app-root',
-	imports: [ToolbarComponent, FlexmonsterComposite, FlexmonsterFlat, FlexmonsterPivot, FlexmonsterToolbar, FlexmonsterFlatFieldList, FlexmonsterPivotFieldList],
+	imports: [FlexmonsterComposite, FlexmonsterFlatFieldList, FlexmonsterFlat , FlexmonsterPivotFieldList, FlexmonsterPivot, FlexmonsterToolbar, ToolbarComponent],
 	templateUrl: './app.html',
 	//Allow FM custom elements
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	styleUrl: './app.css'
 })
-export class App {
+export class App implements AfterViewInit {
 	protected readonly title = signal('test-app');
 	readonly composite = viewChild.required<FlexmonsterComposite>("flex");
 	readonly flatTable = viewChild.required<FlexmonsterFlat>("flat");
@@ -32,47 +34,61 @@ export class App {
 	readonly fieldListFlat = viewChild.required<FlexmonsterFlatFieldList>("fieldListFlat");
 	readonly fieldListPivot = viewChild.required<FlexmonsterPivotFieldList>("fieldListPivot");
 
-	// Method to open the field list - test API calls
-	// Example of using Flexmonster reference passed from the same component
-	public openFieldListComposite(){
-		this.composite().flexmonster.openFieldList();
+	async ngAfterViewInit() {
+		const fm =  await this.composite().loaded;
+		console.log('flexmonster ref in ngAfterViewInit:', fm); // expect: undefined or uninitialized
+
+		try {
+			await this.composite().flexmonster.openFieldList();
+		} catch (e) {
+			console.error('Race condition exposed:', e);
+		}
 	}
 
-	public openFieldListFlat(){
+	// Method to open the field list - test API calls
+	// Example of using Flexmonster reference passed from the same component
+	public async openFieldListComposite() {
+		await this.composite().flexmonster.openFieldList();
+	}
+
+	public openFieldListFlat() {
 		this.toolbarFlat().toolbar.openFieldList();
 	}
 
-	public openFieldListPivot(){
+	public openFieldListPivot() {
 		this.toolbarPivot().toolbar.openFieldList();
 	}
 
-	public getCellFlat(){
-		const cell = this.flatTable().flatTable.getCell(0,0);
+	public getCellFlat() {
+		const cell = this.flatTable().flatTable.getCell(0, 0);
 		alert(`Value of the first cell: ${cell.value}`);
 	}
 
-	public getCellPivot(){
-		const cell = this.pivotTable().pivotTable.getCell(0,0);
+	public getCellPivot() {
+		const cell = this.pivotTable().pivotTable.getCell(0, 0);
 		alert(`Value of the first cell: ${cell.value}`);
 	}
 
-	public setViewType(type: "flat"|"pivot") {
-		this.composite().flexmonster.setViewType(type);
+	public setViewType(type: `${FMCompositeViewType}`) {
+		this.composite().flexmonster.setViewType(type as FMCompositeViewType);
 	}
 
 	// Test property binding with our toolkit element
-	public disabled = true;	
+	public disabled = true;
 
 	//#region flexmonster composite
-	public optionsFmPivot = {
-		viewType: "flat"
+	public optionsFmPivot: IFMCompositeOptionsInputParams = {
+		viewType: 'pivot',
+		flatTable: {},
+		pivotTable: {}
 	};
 
-	public stateFmFlexmonster =
+	public stateFmFlexmonster: StateInputParams =
 		{
 			"id": "state-0",
 			"dataset": {
 				"dataSource": {
+					"type": "json",
 					"data": [{
 						"Year": 2021,
 						"Gender": "Male",
@@ -80,7 +96,6 @@ export class App {
 						"Count": 20000,
 						"State": "CA"
 					}],
-					"type": "json"
 				}
 			},
 			"slice": {
@@ -111,7 +126,7 @@ export class App {
 
 	//#region flexmonster flat
 
-	public stateFmFlat =
+	public stateFmFlat: StateInputParams =
 		{
 			"id": "state-1",
 			"dataset": {
@@ -123,14 +138,14 @@ export class App {
 						"Count": 20000,
 						"State": "CA"
 					}],
-					"type": "json"
+					"type": 'json',
 				}
 			},
 		};
 
 	//#region flexmonster pivot
 
-	public stateFmPivot =
+	public stateFmPivot: StateInputParams =
 		{
 			"id": "state-2",
 			"dataset": {
