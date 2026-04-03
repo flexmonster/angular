@@ -35,13 +35,11 @@ export class App implements AfterViewInit {
 	readonly fieldListPivot = viewChild.required<FlexmonsterPivotFieldList>("fieldListPivot");
 
 	async ngAfterViewInit() {
-		const fm =  await this.composite().loaded;
-		console.log('flexmonster ref in ngAfterViewInit:', fm); // expect: undefined or uninitialized
-
+		await this.composite().loaded;
 		try {
-			await this.composite().flexmonster.openFieldList();
+			 this.composite().flexmonster.openFieldList();
 		} catch (e) {
-			console.error('Race condition exposed:', e);
+			console.error('Component not loaded');
 		}
 	}
 
