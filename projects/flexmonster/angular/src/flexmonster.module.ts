@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { FlexmonsterComposite } from './flexmonster.component';
 import { FlexmonsterFlat } from './flat-table.component';
-import { FlexmonsterFlatFieldList } from './flat-field-list';
+import { FlexmonsterFlatFieldList } from './flat-field-list.component';
 import { FlexmonsterPivot } from './pivot-table.component';
-import { FlexmonsterPivotFieldList } from './pivot-field-list';
+import { FlexmonsterPivotFieldList } from './pivot-field-list.component';
 import { FlexmonsterToolbar } from './toolbar.component';
+import { FlexmonsterFilter } from './filter.component';
 
 @NgModule({
     imports: [
@@ -14,6 +15,7 @@ import { FlexmonsterToolbar } from './toolbar.component';
         FlexmonsterPivot,
         FlexmonsterPivotFieldList,
         FlexmonsterToolbar,
+        FlexmonsterFilter,
     ],
     exports: [
         FlexmonsterComposite,
@@ -22,6 +24,7 @@ import { FlexmonsterToolbar } from './toolbar.component';
         FlexmonsterPivot,
         FlexmonsterPivotFieldList,
         FlexmonsterToolbar,
+        FlexmonsterFilter,
     ]
 })
 export class FlexmonsterModule{ }

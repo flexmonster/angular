@@ -1,12 +1,12 @@
 {
   "name": "@flexmonster/angular",
-  "version": "3.0.0-beta.3",
+  "version": "3.0.0-beta.4",
   "peerDependencies": {
     "@angular/common": "^21.1.0",
-    "@angular/core": "^21.1.0"
+    "@angular/core": "^21.1.0",
+    "@flexmonster/flexmonster": "^3.0.0-beta.5"
   },
   "dependencies": {
-    "@flexmonster/flexmonster": "^3.0.0-beta.2",
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
