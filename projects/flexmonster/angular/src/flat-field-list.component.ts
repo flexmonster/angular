@@ -2,11 +2,11 @@ import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 import { FlatFieldList, type IFMFlatFieldList, type IFMFlatFieldListOptionsInputParams, type StateInputParams } from '@flexmonster/flexmonster';
 
 @Component({
-  selector: 'flexmonster-flat-field-list',
+  selector: 'fm-flat-field-list',
   standalone: true,
   template: '<div style="width:100%;height:100%;"><div class="fm-ng-wrapper"></div></div>',
 })
-export class FlexmonsterFlatFieldList implements AfterViewInit {
+export class FMFlatFieldList implements AfterViewInit {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMFlatFieldListOptionsInputParams | undefined;
 

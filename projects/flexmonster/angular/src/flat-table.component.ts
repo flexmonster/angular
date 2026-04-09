@@ -2,11 +2,11 @@ import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 import { FlatTable, type IFMFlatTable, type IFMFlatTableOptionsInputParams, type StateInputParams } from '@flexmonster/flexmonster';
 
 @Component({
-  selector: 'flexmonster-flat-table',
+  selector: 'fm-flat-table',
   standalone: true,
   template: '<div style="width:100%;height:100%;"><div class="fm-ng-wrapper"></div></div>',
 })
-export class FlexmonsterFlat implements AfterViewInit {
+export class FMFlatTable implements AfterViewInit {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMFlatTableOptionsInputParams | undefined;
 

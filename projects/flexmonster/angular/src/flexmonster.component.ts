@@ -2,11 +2,11 @@ import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 import { Flexmonster, type IFMComposite, type IFMCompositeOptionsInputParams, type StateInputParams } from '@flexmonster/flexmonster';
 
 @Component({
-  selector: 'flexmonster-composite',
+  selector: 'fm-flexmonster',
   standalone: true,
   template: '<div style="width:100%;height:100%;"><div class="fm-ng-wrapper"></div></div>',
 })
-export class FlexmonsterComposite implements AfterViewInit {
+export class FMFlexmonster implements AfterViewInit {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMCompositeOptionsInputParams | undefined;
 

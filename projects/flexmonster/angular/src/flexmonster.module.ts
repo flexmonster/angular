@@ -1,30 +1,30 @@
 import { NgModule } from '@angular/core';
-import { FlexmonsterComposite } from './flexmonster.component';
-import { FlexmonsterFlat } from './flat-table.component';
-import { FlexmonsterFlatFieldList } from './flat-field-list.component';
-import { FlexmonsterPivot } from './pivot-table.component';
-import { FlexmonsterPivotFieldList } from './pivot-field-list.component';
-import { FlexmonsterToolbar } from './toolbar.component';
-import { FlexmonsterFilter } from './filter.component';
+import { FMFlexmonster } from './flexmonster.component';
+import { FMFlatTable } from './flat-table.component';
+import { FMFlatFieldList } from './flat-field-list.component';
+import { FMPivotTable } from './pivot-table.component';
+import { FMPivotFieldList } from './pivot-field-list.component';
+import { FMToolbar } from './toolbar.component';
+import { FMFilter } from './filter.component';
 
 @NgModule({
     imports: [
-        FlexmonsterComposite,
-        FlexmonsterFlat,
-        FlexmonsterFlatFieldList,
-        FlexmonsterPivot,
-        FlexmonsterPivotFieldList,
-        FlexmonsterToolbar,
-        FlexmonsterFilter,
+        FMFlexmonster,
+        FMFlatTable,
+        FMFlatFieldList,
+        FMPivotTable,
+        FMPivotFieldList,
+        FMToolbar,
+        FMFilter,
     ],
     exports: [
-        FlexmonsterComposite,
-        FlexmonsterFlat,
-        FlexmonsterFlatFieldList,
-        FlexmonsterPivot,
-        FlexmonsterPivotFieldList,
-        FlexmonsterToolbar,
-        FlexmonsterFilter,
+        FMFlexmonster,
+        FMFlatTable,
+        FMFlatFieldList,
+        FMPivotTable,
+        FMPivotFieldList,
+        FMToolbar,
+        FMFilter,
     ]
 })
-export class FlexmonsterModule{ }
+export class FMModule{ }

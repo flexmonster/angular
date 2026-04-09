@@ -2,11 +2,11 @@ import { AfterViewInit, Component, ElementRef, Input } from '@angular/core';
 import { PivotFieldList, type IFMPivotFieldList, type IFMPivotFieldListOptionsInputParams,type StateInputParams } from '@flexmonster/flexmonster';
 
 @Component({
-  selector: 'flexmonster-pivot-field-list',
+  selector: 'fm-pivot-field-list',
   standalone: true,
   template: '<div style="width:100%;height:100%;"><div class="fm-ng-wrapper"></div></div>',
 })
-export class FlexmonsterPivotFieldList implements AfterViewInit {
+export class FMPivotFieldList implements AfterViewInit {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMPivotFieldListOptionsInputParams | undefined;
 
