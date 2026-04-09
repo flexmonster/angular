@@ -1,13 +1,13 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
 import type { IFMPivotTable, IFMPivotTableOptionsInputParams, StateInputParams } from '@flexmonster/flexmonster';
-import { FlexmonsterSsrBase } from './flexmonster-ssr-base.component';
+import { FMSsrBase } from './flexmonster-ssr-base.component';
 
 @Component({
-  selector: 'flexmonster-pivot-table',
+  selector: 'fm-pivot-table',
   standalone: true,
   template: '',
 })
-export class FlexmonsterPivot extends FlexmonsterSsrBase {
+export class FMPivotTable extends FMSsrBase {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMPivotTableOptionsInputParams | undefined;
 
@@ -16,12 +16,12 @@ export class FlexmonsterPivot extends FlexmonsterSsrBase {
   constructor(private vcr: ViewContainerRef) {
     super();
     this.afterNextRenderLoaded(async () => {
-      const { FlexmonsterPivot } = await import('@flexmonster/angular');
-      const ref = this.vcr.createComponent(FlexmonsterPivot);
+      const { FMPivotTable } = await import('@flexmonster/angular');
+      const ref = this.vcr.createComponent(FMPivotTable);
       ref.setInput('state', this.state);
       ref.setInput('options', this.options);
       ref.changeDetectorRef.detectChanges();
-      this.pivotTable = ref.instance.pivotTable;
+      this.pivotTable = ref.instance;
     });
   }
 }

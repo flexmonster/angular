@@ -1,13 +1,13 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
 import type { IFMFlatTable, IFMFlatTableOptionsInputParams, StateInputParams } from '@flexmonster/flexmonster';
-import { FlexmonsterSsrBase } from './flexmonster-ssr-base.component';
+import { FMSsrBase } from './flexmonster-ssr-base.component';
 
 @Component({
-  selector: 'flexmonster-flat-table',
+  selector: 'fm-flat-table',
   standalone: true,
   template: '',
 })
-export class FlexmonsterFlat extends FlexmonsterSsrBase {
+export class FMFlatTable extends FMSsrBase {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMFlatTableOptionsInputParams | undefined;
 
@@ -16,12 +16,12 @@ export class FlexmonsterFlat extends FlexmonsterSsrBase {
   constructor(private vcr: ViewContainerRef) {
     super();
     this.afterNextRenderLoaded(async () => {
-      const { FlexmonsterFlat } = await import('@flexmonster/angular');
-      const ref = this.vcr.createComponent(FlexmonsterFlat);
+      const { FMFlatTable } = await import('@flexmonster/angular');
+      const ref = this.vcr.createComponent(FMFlatTable);
       ref.setInput('state', this.state);
       ref.setInput('options', this.options);
       ref.changeDetectorRef.detectChanges();
-      this.flatTable = ref.instance.flatTable;
+      this.flatTable = ref.instance;
     });
   }
 }

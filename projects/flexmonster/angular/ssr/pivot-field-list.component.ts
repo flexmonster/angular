@@ -1,13 +1,13 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
 import type { IFMPivotFieldList, IFMPivotFieldListOptionsInputParams, StateInputParams } from '@flexmonster/flexmonster';
-import { FlexmonsterSsrBase } from './flexmonster-ssr-base.component';
+import { FMSsrBase } from './flexmonster-ssr-base.component';
 
 @Component({
-  selector: 'flexmonster-pivot-field-list',
+  selector: 'fm-pivot-field-list',
   standalone: true,
   template: '',
 })
-export class FlexmonsterPivotFieldList extends FlexmonsterSsrBase {
+export class FMPivotFieldList extends FMSsrBase {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMPivotFieldListOptionsInputParams | undefined;
 
@@ -16,12 +16,12 @@ export class FlexmonsterPivotFieldList extends FlexmonsterSsrBase {
   constructor(private vcr: ViewContainerRef) {
     super();
     this.afterNextRenderLoaded(async () => {
-      const { FlexmonsterPivotFieldList } = await import('@flexmonster/angular');
-      const ref = this.vcr.createComponent(FlexmonsterPivotFieldList);
+      const { FMPivotFieldList } = await import('@flexmonster/angular');
+      const ref = this.vcr.createComponent(FMPivotFieldList);
       ref.setInput('state', this.state);
       ref.setInput('options', this.options);
       ref.changeDetectorRef.detectChanges();
-      this.pivotFieldList = ref.instance.pivotFieldList;
+      this.pivotFieldList = ref.instance;
     });
   }
 }

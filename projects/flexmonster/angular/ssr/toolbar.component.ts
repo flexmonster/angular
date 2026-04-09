@@ -1,13 +1,13 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
 import type { IFMToolbar, IFMToolbarOptionsInputParams, StateInputParams } from '@flexmonster/flexmonster';
-import { FlexmonsterSsrBase } from './flexmonster-ssr-base.component';
+import { FMSsrBase } from './flexmonster-ssr-base.component';
 
 @Component({
-  selector: 'flexmonster-toolbar',
+  selector: 'fm-toolbar',
   standalone: true,
   template: '',
 })
-export class FlexmonsterToolbar extends FlexmonsterSsrBase {
+export class FMToolbar extends FMSsrBase {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMToolbarOptionsInputParams | undefined;
 
@@ -16,12 +16,12 @@ export class FlexmonsterToolbar extends FlexmonsterSsrBase {
   constructor(private vcr: ViewContainerRef) {
     super();
     this.afterNextRenderLoaded(async () => {
-      const { FlexmonsterToolbar } = await import('@flexmonster/angular');
-      const ref = this.vcr.createComponent(FlexmonsterToolbar);
+      const { FMToolbar } = await import('@flexmonster/angular');
+      const ref = this.vcr.createComponent(FMToolbar);
       ref.setInput('state', this.state);
       ref.setInput('options', this.options);
       ref.changeDetectorRef.detectChanges();
-      this.toolbar = ref.instance.toolbar;
+      this.toolbar = ref.instance;
     });
   }
 }

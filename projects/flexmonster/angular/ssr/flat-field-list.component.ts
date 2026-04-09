@@ -1,13 +1,13 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
 import type { IFMFlatFieldList, IFMFlatFieldListOptionsInputParams, StateInputParams } from '@flexmonster/flexmonster';
-import { FlexmonsterSsrBase } from './flexmonster-ssr-base.component';
+import { FMSsrBase } from './flexmonster-ssr-base.component';
 
 @Component({
-  selector: 'flexmonster-flat-field-list',
+  selector: 'fm-flat-field-list',
   standalone: true,
   template: '',
 })
-export class FlexmonsterFlatFieldList extends FlexmonsterSsrBase {
+export class FMFlatFieldList extends FMSsrBase {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMFlatFieldListOptionsInputParams | undefined;
 
@@ -16,12 +16,12 @@ export class FlexmonsterFlatFieldList extends FlexmonsterSsrBase {
   constructor(private vcr: ViewContainerRef) {
     super();
     this.afterNextRenderLoaded(async () => {
-      const { FlexmonsterFlatFieldList } = await import('@flexmonster/angular');
-      const ref = this.vcr.createComponent(FlexmonsterFlatFieldList);
+      const { FMFlatFieldList } = await import('@flexmonster/angular');
+      const ref = this.vcr.createComponent(FMFlatFieldList);
       ref.setInput('state', this.state);
       ref.setInput('options', this.options);
       ref.changeDetectorRef.detectChanges();
-      this.flatFieldList = ref.instance.flatFieldList;
+      this.flatFieldList = ref.instance;
     });
   }
 }
