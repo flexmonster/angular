@@ -47,4 +47,4 @@ If you need any help with your license, fill out our [Contact form](https://www
 
 Follow us on social media and stay updated on our development process!
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/company/flexmonster) [![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white&logoSize=auto)](https://youtube.com/user/FlexMonsterPivot) [![X](https://img.shields.io/badge/@Flexmonster-black?style=for-the-badge&logo=x&logoColor=white&logoSize=auto)](https://x.com/flexmonster)
+[![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white&logoSize=auto)](https://youtube.com/user/FlexMonsterPivot) [![X](https://img.shields.io/badge/@Flexmonster-black?style=for-the-badge&logo=x&logoColor=white&logoSize=auto)](https://x.com/flexmonster) [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/company/flexmonster) 
