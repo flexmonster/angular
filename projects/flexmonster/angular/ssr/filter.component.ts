@@ -1,9 +1,9 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
-import type { IFMFilter, IFMFilterInputParams, StateInputParams } from '@flexmonster/flexmonster';
+import type { IFMFilter, IFMFilterInputParams, StateInputParams } from '@flexmonster/js';
 import { FMSsrBase } from './flexmonster-ssr-base.component';
 
 @Component({
-  selector: 'fm-filter',
+  selector: 'ngx-fm-filter',
   standalone: true,
   template: '',
 })

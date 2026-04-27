@@ -8,12 +8,12 @@ import {
   type MemberFilterOutputParams,
   type ConditionalFilterInputParams,
   type ConditionalFilterOutputParams,
-} from '@flexmonster/flexmonster';
+} from '@flexmonster/js';
 
 @Component({
-  selector: 'fm-filter',
+  selector: 'ngx-fm-filter',
   standalone: true,
-  template: '<div style="width:100%;height:100%;"><div class="fm-ng-wrapper"></div></div>',
+  template: '<div class="fm-ng-wrapper" style="width:100%;height:100%;"></div>',
 })
 export class FMFilter implements AfterViewInit, OnDestroy, IFMFilter {
   @Input() state: StateInputParams | undefined;

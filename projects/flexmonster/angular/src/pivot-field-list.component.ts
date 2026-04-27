@@ -4,12 +4,12 @@ import {
   type IFMPivotFieldList,
   type IFMPivotFieldListOptionsInputParams,
   type StateInputParams,
-} from '@flexmonster/flexmonster';
+} from '@flexmonster/js';
 
 @Component({
-  selector: 'fm-pivot-field-list',
+  selector: 'ngx-fm-pivot-field-list',
   standalone: true,
-  template: '<div style="width:100%;height:100%;"><div class="fm-ng-wrapper"></div></div>',
+  template: '<div class="fm-ng-wrapper" style="width:100%;height:100%;"></div>',
 })
 export class FMPivotFieldList implements AfterViewInit, OnDestroy, IFMPivotFieldList {
   @Input() state: StateInputParams | undefined;

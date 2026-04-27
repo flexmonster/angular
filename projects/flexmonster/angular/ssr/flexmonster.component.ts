@@ -1,17 +1,17 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
-import type { IFMComposite, IFMCompositeOptionsInputParams, StateInputParams } from '@flexmonster/flexmonster';
+import type { IFMFlexmonster, IFMFlexmonsterOptionsInputParams, StateInputParams } from '@flexmonster/js';
 import { FMSsrBase } from './flexmonster-ssr-base.component';
 
 @Component({
-  selector: 'fm-flexmonster',
+  selector: 'ngx-fm-flexmonster',
   standalone: true,
   template: '',
 })
 export class FMFlexmonster extends FMSsrBase {
   @Input() state: StateInputParams | undefined;
-  @Input() options: IFMCompositeOptionsInputParams | undefined;
+  @Input() options: IFMFlexmonsterOptionsInputParams | undefined;
 
-  public flexmonster!: IFMComposite;
+  public flexmonster!: IFMFlexmonster;
 
   constructor(private vcr: ViewContainerRef) {
     super();

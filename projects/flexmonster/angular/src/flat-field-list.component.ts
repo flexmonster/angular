@@ -4,12 +4,12 @@ import {
   type IFMFlatFieldList,
   type IFMFlatFieldListOptionsInputParams,
   type StateInputParams,
-} from '@flexmonster/flexmonster';
+} from '@flexmonster/js';
 
 @Component({
-  selector: 'fm-flat-field-list',
+  selector: 'ngx-fm-flat-field-list',
   standalone: true,
-  template: '<div style="width:100%;height:100%;"><div class="fm-ng-wrapper"></div></div>',
+  template: '<div class="fm-ng-wrapper" style="width:100%;height:100%;"></div>',
 })
 export class FMFlatFieldList implements AfterViewInit, OnDestroy, IFMFlatFieldList {
   @Input() state: StateInputParams | undefined;

@@ -1,9 +1,9 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
-import type { IFMPivotTable, IFMPivotTableOptionsInputParams, StateInputParams } from '@flexmonster/flexmonster';
+import type { IFMPivotTable, IFMPivotTableOptionsInputParams, StateInputParams } from '@flexmonster/js';
 import { FMSsrBase } from './flexmonster-ssr-base.component';
 
 @Component({
-  selector: 'fm-pivot-table',
+  selector: 'ngx-fm-pivot-table',
   standalone: true,
   template: '',
 })

@@ -11,7 +11,8 @@
     "build": "ng build @flexmonster/angular",
     "build:testapp": "ng build test-app",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "node scripts/smoke.mjs",
+    "test:ng": "ng test",
     "serve:ssr:test-app": "node dist/test-app/server/server.mjs"
   },
   "prettier": {

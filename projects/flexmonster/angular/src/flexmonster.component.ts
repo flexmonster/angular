@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from '@angular/core';
 import {
   Flexmonster,
-  type IFMComposite,
-  type IFMCompositeOptionsInputParams,
-  type IFMCompositeOptionsObject,
+  type IFMFlexmonster,
+  type IFMFlexmonsterOptionsInputParams,
   type StateInputParams,
   type FilterInputParams,
   type FilterOutputParams,
@@ -15,19 +14,19 @@ import {
   type MemberSortOutputParams,
   type IGridCellObject,
   FMCompositeViewType,
-} from '@flexmonster/flexmonster';
+} from '@flexmonster/js';
 
 @Component({
-  selector: 'fm-flexmonster',
+  selector: 'ngx-fm-flexmonster',
   standalone: true,
-  template: '<div style="width:100%;height:100%;"><div class="fm-ng-wrapper"></div></div>',
+  template: '<div class="fm-ng-wrapper" style="width:100%;height:100%;"></div>',
 })
-export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMComposite {
+export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
   @Input() state: StateInputParams | undefined;
-  @Input() options: IFMCompositeOptionsInputParams | undefined;
+  @Input() options: IFMFlexmonsterOptionsInputParams | undefined;
 
   protected root: HTMLElement;
-  private _flexmonster!: IFMComposite;
+  private _flexmonster!: IFMFlexmonster;
 
   constructor(el: ElementRef) {
     this.root = el.nativeElement;
@@ -69,7 +68,7 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMComposite {
   closeFieldList(): void { this._flexmonster.closeFieldList(); }
   dispose(): void { this._flexmonster.dispose(); }
   getCell(rowIndex: number, columnIndex: number): IGridCellObject { return this._flexmonster.getCell(rowIndex, columnIndex); }
-  getOptions(): IFMCompositeOptionsObject { return this._flexmonster.getOptions(); }
+  getOptions(): any { return this._flexmonster.getOptions(); }
   getSelectedCells(): IGridCellObject[] { return this._flexmonster.getSelectedCells(); }
   openFieldList(): void { this._flexmonster.openFieldList(); }
   scrollToColumn(columnIndex: number): void { this._flexmonster.scrollToColumn(columnIndex); }

@@ -13,12 +13,12 @@ import {
   type MemberSortInputParams,
   type MemberSortOutputParams,
   type IGridCellObject,
-} from '@flexmonster/flexmonster';
+} from '@flexmonster/js';
 
 @Component({
-  selector: 'fm-flat-table',
+  selector: 'ngx-fm-flat-table',
   standalone: true,
-  template: '<div style="width:100%;height:100%;"><div class="fm-ng-wrapper"></div></div>',
+  template: '<div class="fm-ng-wrapper" style="width:100%;height:100%;"></div>',
 })
 export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
   @Input() state: StateInputParams | undefined;

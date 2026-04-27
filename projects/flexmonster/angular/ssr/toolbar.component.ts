@@ -1,9 +1,9 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
-import type { IFMToolbar, IFMToolbarOptionsInputParams, StateInputParams } from '@flexmonster/flexmonster';
+import type { IFMToolbar, IFMToolbarOptionsInputParams, StateInputParams } from '@flexmonster/js';
 import { FMSsrBase } from './flexmonster-ssr-base.component';
 
 @Component({
-  selector: 'fm-toolbar',
+  selector: 'ngx-fm-toolbar',
   standalone: true,
   template: '',
 })

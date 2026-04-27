@@ -1,9 +1,9 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
-import type { IFMFlatFieldList, IFMFlatFieldListOptionsInputParams, StateInputParams } from '@flexmonster/flexmonster';
+import type { IFMFlatFieldList, IFMFlatFieldListOptionsInputParams, StateInputParams } from '@flexmonster/js';
 import { FMSsrBase } from './flexmonster-ssr-base.component';
 
 @Component({
-  selector: 'fm-flat-field-list',
+  selector: 'ngx-fm-flat-field-list',
   standalone: true,
   template: '',
 })
