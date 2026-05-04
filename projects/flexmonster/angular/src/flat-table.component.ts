@@ -57,9 +57,9 @@ export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
   getMemberFilter(fieldName: string): Promise<MemberFilterOutputParams> { return this._flatTable.getMemberFilter(fieldName); }
   setMemberFilter(filter: MemberFilterInputParams): Promise<void> { return this._flatTable.setMemberFilter(filter); }
   clearMemberFilter(fieldName: string): Promise<void> { return this._flatTable.clearMemberFilter(fieldName); }
-  hasAnySort(): Promise<boolean> { return this._flatTable.hasAnySort(); }
-  getSort(): Promise<SortOutputParams | SortOutputParams[]> { return this._flatTable.getSort(); }
-  setSort(sort: SortInputParams | SortInputParams[]): Promise<void> { return this._flatTable.setSort(sort); }
+  hasSort(): Promise<boolean> { return this._flatTable.hasSort(); }
+  getSort(): Promise<SortOutputParams[]> { return this._flatTable.getSort(); }
+  setSort(sort: SortInputParams[]): Promise<void> { return this._flatTable.setSort(sort); }
   clearSort(): Promise<void> { return this._flatTable.clearSort(); }
   hasMemberSort(fieldName: string): Promise<boolean> { return this._flatTable.hasMemberSort(fieldName); }
   addMemberSort(sort: MemberSortInputParams): Promise<void> { return this._flatTable.addMemberSort(sort); }

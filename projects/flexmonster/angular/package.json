@@ -1,17 +1,21 @@
 {
   "name": "@flexmonster/angular",
-  "version": "3.0.0-beta.6",
+  "version": "3.0.0-preview.3.1",
+  "description": "Angular wrapper for Flexmonster Pivot",
+  "license": "https://www.flexmonster.com/software-license-agreement/",
+  "author": {
+    "name": "Flexmonster",
+    "email": "help@flexmonster.com"
+  },
+  "homepage": "https://prerelease.flexmonster.com/",
   "peerDependencies": {
     "@angular/common": "^21.1.0",
     "@angular/core": "^21.1.0",
-    "@flexmonster/js": "^3.0.0-preview.2.3"
+    "@flexmonster/js": "3.0.0-preview.3.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "sideEffects": false,
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "repository": "https://github.com/flexmonster/angular"
 }

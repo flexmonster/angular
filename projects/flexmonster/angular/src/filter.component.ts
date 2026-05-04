@@ -8,6 +8,8 @@ import {
   type MemberFilterOutputParams,
   type ConditionalFilterInputParams,
   type ConditionalFilterOutputParams,
+  ConditionalFilterControlOutputParams,
+  MemberFilterControlOutputParams,
 } from '@flexmonster/js';
 
 @Component({
@@ -46,13 +48,13 @@ export class FMFilter implements AfterViewInit, OnDestroy, IFMFilter {
   // Methods
   getOptions(): any { return this._filter.getOptions(); }
   dispose(): void { this._filter.dispose(); }
-  clearMemberFilter(): Promise<void> { return this._filter.clearMemberFilter(); }
-  getMemberFilter(): Promise<MemberFilterOutputParams> { return this._filter.getMemberFilter(); }
+  getMemberFilter(): Promise<MemberFilterControlOutputParams> { return this._filter.getMemberFilter(); }
   setMemberFilter(filter: MemberFilterInputParams): Promise<void> { return this._filter.setMemberFilter(filter); }
-  clearConditionalFilters(): Promise<void> { return this._filter.clearConditionalFilters(); }
-  getConditionalFilters(): Promise<ConditionalFilterOutputParams[]> { return this._filter.getConditionalFilters(); }
+  clearMemberFilter(): Promise<void> { return this._filter.clearMemberFilter(); }
+  getConditionalFilters(): Promise<ConditionalFilterControlOutputParams[]> { return this._filter.getConditionalFilters(); }
   addConditionalFilter(filter: ConditionalFilterInputParams | ConditionalFilterInputParams[]): Promise<void> { return this._filter.addConditionalFilter(filter); }
   setConditionalFilters(filters: ConditionalFilterInputParams[]): Promise<void> { return this._filter.setConditionalFilters(filters); }
+  clearConditionalFilters(): Promise<void> { return this._filter.clearConditionalFilters(); }
   getSortOrder(): Promise<string> { return this._filter.getSortOrder(); }
   setSortOrder(order: string): Promise<void> { return this._filter.setSortOrder(order); }
 }

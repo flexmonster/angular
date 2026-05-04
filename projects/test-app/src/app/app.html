@@ -6,23 +6,23 @@
 <fm-button size="sm" (click)="setViewType('pivot')">Pivot view</fm-button>
 
 <app-toolbar [flexmonster]="flex" serviceId="main-grid"></app-toolbar>
-<flexmonster-composite #flex [state]="stateFmFlexmonster" [options]="optionsFmPivot" serviceId="main-grid"></flexmonster-composite>
+<ngx-fm-flexmonster #flex [state]="stateFmFlexmonster" [options]="optionsFmPivot" serviceId="main-grid"></ngx-fm-flexmonster>
 
 <h2 id="flat">Flat</h2>
 <fm-button size="sm" (click)="openFieldListFlat()">Open field list</fm-button>
 <fm-button size="sm" (click)="getCellFlat()">Get 1st cell</fm-button>
 
-<flexmonster-toolbar #toolbarFlat  [state]="stateFmFlat"></flexmonster-toolbar>
-<flexmonster-flat-table #flat [state]="stateFmFlat"></flexmonster-flat-table>
-<flexmonster-flat-field-list #fieldListFlat [state]="stateFmFlat"></flexmonster-flat-field-list>
+<ngx-fm-toolbar #toolbarFlat [state]="stateFmFlat"></ngx-fm-toolbar>
+<ngx-fm-flat-table #flat [state]="stateFmFlat"></ngx-fm-flat-table>
+<ngx-fm-flat-field-list #fieldListFlat [state]="stateFmFlat"></ngx-fm-flat-field-list>
 
 <h2 id="pivot">Pivot</h2>
 <fm-button size="sm" (click)="openFieldListPivot()">Open field list</fm-button>
 <fm-button size="sm" (click)="getCellPivot()">Get 1st cell</fm-button>
 
-<flexmonster-toolbar #toolbarPivot [state]="stateFmPivot"></flexmonster-toolbar>
-<flexmonster-pivot-table #pivot [state]="stateFmPivot"></flexmonster-pivot-table>
-<flexmonster-pivot-field-list #fieldListPivot [state]="stateFmPivot"></flexmonster-pivot-field-list>
+<ngx-fm-toolbar #toolbarPivot [state]="stateFmPivot"></ngx-fm-toolbar>
+<ngx-fm-pivot-table #pivot [state]="stateFmPivot"></ngx-fm-pivot-table>
+<ngx-fm-pivot-field-list #fieldListPivot [state]="stateFmPivot"></ngx-fm-pivot-field-list>
 
 <h2 id="toolkit">Toolkit elements use example</h2>
 <fm-button size="sm" [disabled]="disabled">Custom Button</fm-button>

@@ -2,23 +2,23 @@ import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, signal, viewChild } f
 import { RouterOutlet } from '@angular/router';
 
 //Import Flexmonster Angular SSR components
-import { FlexmonsterComposite, FlexmonsterFlatFieldList, FlexmonsterFlat, FlexmonsterPivotFieldList, FlexmonsterPivot, FlexmonsterToolbar } from '@flexmonster/angular/ssr';
+import { FMFlexmonster, FMFlatFieldList, FMFlatTable, FMPivotFieldList, FMPivotTable, FMToolbar } from '@flexmonster/angular/ssr';
 
 //Import Flexmonster Angular CSR components
-// import { FlexmonsterComposite, FlexmonsterFlat, FlexmonsterPivot, FlexmonsterToolbar, FlexmonsterFlatFieldList, FlexmonsterPivotFieldList } from '@flexmonster/angular';
+// import { FMFlexmonster, FMFlatTable, FMPivotTable, FMToolbar, FMFlatFieldList, FMPivotFieldList } from '@flexmonster/angular';
 
 
 //Import Flexmonster styles
-import '@flexmonster/flexmonster/flexmonster.css'
+import '@flexmonster/js/flexmonster.css'
 
 //Import Toolbar component
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { FMCompositeViewType, IFMCompositeOptionsInputParams, StateInputParams } from '@flexmonster/flexmonster';
-// import { DataSourceType, F16CompositeViewType } from '@flexmonster/flexmonster';
+import { FMCompositeViewType, IFMFlexmonsterOptionsInputParams, StateInputParams } from '@flexmonster/js';
+// import { DataSourceType, F16CompositeViewType } from '@flexmonster/js';
 
 @Component({
 	selector: 'app-root',
-	imports: [FlexmonsterComposite, FlexmonsterFlatFieldList, FlexmonsterFlat , FlexmonsterPivotFieldList, FlexmonsterPivot, FlexmonsterToolbar, ToolbarComponent],
+	imports: [FMFlexmonster, FMFlatFieldList, FMFlatTable, FMPivotFieldList, FMPivotTable, FMToolbar, ToolbarComponent],
 	templateUrl: './app.html',
 	//Allow FM custom elements
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -26,13 +26,13 @@ import { FMCompositeViewType, IFMCompositeOptionsInputParams, StateInputParams }
 })
 export class App implements AfterViewInit {
 	protected readonly title = signal('test-app');
-	readonly composite = viewChild.required<FlexmonsterComposite>("flex");
-	readonly flatTable = viewChild.required<FlexmonsterFlat>("flat");
-	readonly pivotTable = viewChild.required<FlexmonsterPivot>("pivot");
-	readonly toolbarPivot = viewChild.required<FlexmonsterToolbar>("toolbarPivot");
-	readonly toolbarFlat = viewChild.required<FlexmonsterToolbar>("toolbarFlat");
-	readonly fieldListFlat = viewChild.required<FlexmonsterFlatFieldList>("fieldListFlat");
-	readonly fieldListPivot = viewChild.required<FlexmonsterPivotFieldList>("fieldListPivot");
+	readonly composite = viewChild.required<FMFlexmonster>("flex");
+	readonly flatTable = viewChild.required<FMFlatTable>("flat");
+	readonly pivotTable = viewChild.required<FMPivotTable>("pivot");
+	readonly toolbarPivot = viewChild.required<FMToolbar>("toolbarPivot");
+	readonly toolbarFlat = viewChild.required<FMToolbar>("toolbarFlat");
+	readonly fieldListFlat = viewChild.required<FMFlatFieldList>("fieldListFlat");
+	readonly fieldListPivot = viewChild.required<FMPivotFieldList>("fieldListPivot");
 
 	async ngAfterViewInit() {
 		await this.composite().loaded;
@@ -75,7 +75,7 @@ export class App implements AfterViewInit {
 	public disabled = true;
 
 	//#region flexmonster composite
-	public optionsFmPivot: IFMCompositeOptionsInputParams = {
+	public optionsFmPivot: IFMFlexmonsterOptionsInputParams = {
 		viewType: 'pivot',
 		flatTable: {},
 		pivotTable: {}
@@ -99,24 +99,24 @@ export class App implements AfterViewInit {
 			"slice": {
 				"rows": [
 					{
-						"name": "Year"
+						"fieldName": "Year"
 					},
 					{
-						"name": "Gender"
+						"fieldName": "Gender"
 					},
 					{
-						"name": "Name"
+						"fieldName": "Name"
 					}
 				],
 				"values": [
 					{
-						"name": "Count",
+						"fieldName": "Count",
 						"aggregation": "sum"
 					}
 				],
 				"columns": [
 					{
-						"name": "State"
+						"fieldName": "State"
 					}
 				]
 			}
@@ -161,24 +161,24 @@ export class App implements AfterViewInit {
 			"slice": {
 				"rows": [
 					{
-						"name": "Year"
+						"fieldName": "Year"
 					},
 					{
-						"name": "Gender"
+						"fieldName": "Gender"
 					},
 					{
-						"name": "Name"
+						"fieldName": "Name"
 					}
 				],
 				"values": [
 					{
-						"name": "Count",
+						"fieldName": "Count",
 						"aggregation": "sum"
 					}
 				],
 				"columns": [
 					{
-						"name": "State"
+						"fieldName": "State"
 					}
 				]
 			}

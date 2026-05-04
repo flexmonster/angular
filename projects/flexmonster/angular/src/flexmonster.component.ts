@@ -8,12 +8,12 @@ import {
   type FilterOutputParams,
   type MemberFilterInputParams,
   type MemberFilterOutputParams,
-  type SortInputParams,
-  type SortOutputParams,
   type MemberSortInputParams,
   type MemberSortOutputParams,
   type IGridCellObject,
   FMCompositeViewType,
+  SortInputParams,
+  SortOutputParams,
 } from '@flexmonster/js';
 
 @Component({
@@ -56,9 +56,9 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
   getMemberFilter(fieldName: string): Promise<MemberFilterOutputParams> { return this._flexmonster.getMemberFilter(fieldName); }
   setMemberFilter(filter: MemberFilterInputParams): Promise<void> { return this._flexmonster.setMemberFilter(filter); }
   clearMemberFilter(fieldName: string): Promise<void> { return this._flexmonster.clearMemberFilter(fieldName); }
-  hasAnySort(): Promise<boolean> { return this._flexmonster.hasAnySort(); }
-  getSort(): Promise<SortOutputParams | SortOutputParams[]> { return this._flexmonster.getSort(); }
-  setSort(sort: SortInputParams | SortInputParams[]): Promise<void> { return this._flexmonster.setSort(sort); }
+  hasSort(): Promise<boolean> { return this._flexmonster.hasSort(); }
+  getSort(): Promise<SortOutputParams[]> { return this._flexmonster.getSort(); }
+  setSort(sort: SortInputParams[]): Promise<void> { return this._flexmonster.setSort(sort); }
   clearSort(): Promise<void> { return this._flexmonster.clearSort(); }
   hasMemberSort(fieldName: string): Promise<boolean> { return this._flexmonster.hasMemberSort(fieldName); }
   addMemberSort(sort: MemberSortInputParams): Promise<void> { return this._flexmonster.addMemberSort(sort); }
