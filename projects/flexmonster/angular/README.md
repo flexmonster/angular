@@ -1,63 +1,50 @@
-# Angular
+# Flexmonster Pivot 3.0 (preview) wrapper for Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
+Website: [prerelease.flexmonster.com](https://prerelease.flexmonster.com/?r=wrap_30_ang)
 
-## Code scaffolding
+[![Github Stars](https://img.shields.io/github/stars/flexmonster?style=social)](https://github.com/flexmonster) [![X](https://img.shields.io/twitter/follow/Flexmonster?style=social)](https://x.com/Flexmonster)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Flexmonster 3.0 is an upcoming major update for [Flexmonster Pivot Table & Charts](https://www.flexmonster.com/?r=wrap_30_ang), a powerful JavaScript pivot table component. Check out the [Flexmonster 3.0 roadmap](https://prerelease.flexmonster.com/roadmap?r=wrap_30_ang#current) and keep track of the latest updates.
 
-```bash
-ng generate component component-name
-```
+This package is a Flexmonster 3.0 wrapper for [Angular](https://angular.dev/) applications.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🛠️ In active development
 
-```bash
-ng generate --help
-```
+Flexmonster Pivot 3.0 (preview) is currently in active development and is not production-ready. For production, please use the [Flexmonster 2.9-based Angular wrapper](https://www.npmjs.com/package/ngx-flexmonster).
 
-## Building
+<br/>
+Table of contents:
 
-To build the library, run:
+* [Integration](#integration)  
+* [Sample project](#sample-project)  
+* [Support and feedback](#support-and-feedback)  
+* [License](#license)  
+* [Social media](#social-media)
 
-```bash
-ng build angular
-```
+## Integration
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
+Flexmonster documentation provides a detailed step-by-step guide on [іntegration with Angular](https://prerelease.flexmonster.com/doc/angular/embed-flexmonster-ui/?r=wrap_30_ang).
 
-### Publishing the Library
+## Sample project
 
-Once the project is built, you can publish your library by following these steps:
+If you're looking for reference examples, our team has prepared an [Angular pivot grid sample project](https://github.com/flexmonster/angular-sample) with a live Flexmonster 3.0 demo.
 
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/angular
-   ```
+## Support and feedback
 
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
+In case of any issues, visit our [Troubleshooting](https://prerelease.flexmonster.com/doc/angular/troubleshooting/?r=wrap_30_ang) section and look through the list of [common issues](https://prerelease.flexmonster.com/doc/angular/common-client-side-issues/?r=wrap_30_ang).
 
-## Running unit tests
+To share your feedback or ask questions, contact our Tech team by raising a ticket on our [Help Center](https://www.flexmonster.com/help-center/?r=wrap_30_ang).
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## License
 
-```bash
-ng test
-```
+The Flexmonster 3.0 (preview) wrapper for Angular is distributed under the terms and conditions of the Flexmonster Software License Agreement: [https://www.flexmonster.com/software-license-agreement/](https://www.flexmonster.com/software-license-agreement/?r=wrap_30_ang).
 
-## Running end-to-end tests
+Flexmonster offers a 30-day free trial so you can evaluate our product. Pricing for commercial license models can be found on the [Flexmonster pricing page](https://www.flexmonster.com/pivot-table-editions-and-pricing/?r=wrap_30_ang).
 
-For end-to-end (e2e) testing, run:
+If you need any help with your license, fill out our [Contact form](https://www.flexmonster.com/contact-our-team/?r=wrap_30_ang), and we will get in touch with you.
 
-```bash
-ng e2e
-```
+## Social media
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Follow us on social media and stay updated on our development process!
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white&logoSize=auto)](https://youtube.com/user/FlexMonsterPivot) [![X](https://img.shields.io/badge/@Flexmonster-black?style=for-the-badge&logo=x&logoColor=white&logoSize=auto)](https://x.com/flexmonster) [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/company/flexmonster) 
