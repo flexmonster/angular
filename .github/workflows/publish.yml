@@ -1,0 +1,94 @@
+name: publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g. 3.0.0-preview.4). Applied to @flexmonster/angular and to its @flexmonster/js peer.'
+        required: true
+        type: string
+      dry_run:
+        description: 'Dry run (build + npm publish --dry-run, no registry write)'
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@flexmonster'
+
+      - name: Validate version
+        run: |
+          if ! [[ "${{ inputs.version }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-+][0-9A-Za-z.-]+)?$ ]]; then
+            echo "✗ Invalid semver: '${{ inputs.version }}'"
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Bump version in lib package.json
+        working-directory: projects/flexmonster/angular
+        run: |
+          npm pkg set version="${{ inputs.version }}"
+          npm pkg set 'peerDependencies.@flexmonster/js'="${{ inputs.version }}"
+          echo "--- projects/flexmonster/angular/package.json ---"
+          cat package.json
+
+      - name: Build library
+        run: npx ng build @flexmonster/angular
+
+      - name: Copy LICENSE and README to release folder
+        run: |
+          cp LICENSE  dist/flexmonster/angular/LICENSE
+          cp README.md dist/flexmonster/angular/README.md
+          ls -la dist/flexmonster/angular
+
+      - name: Publish (dry-run)
+        if: ${{ inputs.dry_run }}
+        working-directory: dist/flexmonster/angular
+        run: npm publish --dry-run
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish
+        if: ${{ !inputs.dry_run }}
+        working-directory: dist/flexmonster/angular
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify Slack
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          STATUS:  ${{ job.status }}
+          REPO:    ${{ github.repository }}
+          REF:     ${{ github.ref_name }}
+          SHA:     ${{ github.sha }}
+          ACTOR:   ${{ github.actor }}
+          RUN:     ${{ github.run_id }}
+          VERSION: ${{ inputs.version }}
+          DRYRUN:  ${{ inputs.dry_run }}
+        run: |
+          ICON=$([ "$STATUS" = "success" ] && echo ":white_check_mark:" || echo ":x:")
+          MODE=$([ "$DRYRUN" = "true" ] && echo " (dry-run)" || echo "")
+          SHORT_SHA=${SHA:0:7}
+          URL="https://github.com/$REPO/actions/runs/$RUN"
+          curl -fSs -X POST -H 'Content-Type: application/json' "$SLACK_WEBHOOK_URL" \
+            -d "{\"text\":\"$ICON *publish* @flexmonster/angular@\`$VERSION\`$MODE on \`$REPO@$REF\` ($SHORT_SHA) by $ACTOR — *$STATUS*\n<$URL|View run>\"}"
