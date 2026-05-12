@@ -26,9 +26,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    permissions:
-      contents: read
-      packages: write
     steps:
       - uses: actions/checkout@v4
 
@@ -36,7 +33,7 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-          registry-url: 'https://npm.pkg.github.com'
+          registry-url: 'https://registry.npmjs.org'
           scope: '@flexmonster'
 
       - name: Validate version
@@ -49,7 +46,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Bump version in lib package.json
         working-directory: projects/flexmonster/angular
@@ -73,32 +70,11 @@ jobs:
         working-directory: dist/flexmonster/angular
         run: npm publish --tag "${{ inputs.dist_tag }}" --dry-run
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish
         if: ${{ !inputs.dry_run }}
         working-directory: dist/flexmonster/angular
         run: npm publish --tag "${{ inputs.dist_tag }}"
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Notify Slack
-        if: always()
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          STATUS:  ${{ job.status }}
-          REPO:    ${{ github.repository }}
-          REF:     ${{ github.ref_name }}
-          SHA:     ${{ github.sha }}
-          ACTOR:   ${{ github.actor }}
-          RUN:     ${{ github.run_id }}
-          VERSION: ${{ inputs.version }}
-          TAG:     ${{ inputs.dist_tag }}
-          DRYRUN:  ${{ inputs.dry_run }}
-        run: |
-          ICON=$([ "$STATUS" = "success" ] && echo ":white_check_mark:" || echo ":x:")
-          MODE=$([ "$DRYRUN" = "true" ] && echo " (dry-run)" || echo "")
-          SHORT_SHA=${SHA:0:7}
-          URL="https://github.com/$REPO/actions/runs/$RUN"
-          curl -fSs -X POST -H 'Content-Type: application/json' "$SLACK_WEBHOOK_URL" \
-            -d "{\"text\":\"$ICON *publish* @flexmonster/angular@\`$VERSION\` (tag: \`$TAG\`)$MODE on \`$REPO@$REF\` ($SHORT_SHA) by $ACTOR — *$STATUS*\n<$URL|View run>\"}"
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
