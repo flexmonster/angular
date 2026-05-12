@@ -7,6 +7,15 @@ on:
         description: 'Version to publish (e.g. 3.0.0-preview.4). Applied to @flexmonster/angular and to its @flexmonster/js peer.'
         required: true
         type: string
+      dist_tag:
+        description: 'npm dist-tag to publish under'
+        required: true
+        type: choice
+        default: 'next'
+        options:
+          - latest
+          - next
+          - beta
       dry_run:
         description: 'Dry run (build + npm publish --dry-run, no registry write)'
         required: false
@@ -62,14 +71,14 @@ jobs:
       - name: Publish (dry-run)
         if: ${{ inputs.dry_run }}
         working-directory: dist/flexmonster/angular
-        run: npm publish --dry-run
+        run: npm publish --tag "${{ inputs.dist_tag }}" --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish
         if: ${{ !inputs.dry_run }}
         working-directory: dist/flexmonster/angular
-        run: npm publish
+        run: npm publish --tag "${{ inputs.dist_tag }}"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -84,6 +93,7 @@ jobs:
           ACTOR:   ${{ github.actor }}
           RUN:     ${{ github.run_id }}
           VERSION: ${{ inputs.version }}
+          TAG:     ${{ inputs.dist_tag }}
           DRYRUN:  ${{ inputs.dry_run }}
         run: |
           ICON=$([ "$STATUS" = "success" ] && echo ":white_check_mark:" || echo ":x:")
@@ -91,4 +101,4 @@ jobs:
           SHORT_SHA=${SHA:0:7}
           URL="https://github.com/$REPO/actions/runs/$RUN"
           curl -fSs -X POST -H 'Content-Type: application/json' "$SLACK_WEBHOOK_URL" \
-            -d "{\"text\":\"$ICON *publish* @flexmonster/angular@\`$VERSION\`$MODE on \`$REPO@$REF\` ($SHORT_SHA) by $ACTOR — *$STATUS*\n<$URL|View run>\"}"
+            -d "{\"text\":\"$ICON *publish* @flexmonster/angular@\`$VERSION\` (tag: \`$TAG\`)$MODE on \`$REPO@$REF\` ($SHORT_SHA) by $ACTOR — *$STATUS*\n<$URL|View run>\"}"
