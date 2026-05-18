@@ -61,11 +61,6 @@ export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
   getSort(): Promise<SortOutputParams[]> { return this._flatTable.getSort(); }
   setSort(sort: SortInputParams[]): Promise<void> { return this._flatTable.setSort(sort); }
   clearSort(): Promise<void> { return this._flatTable.clearSort(); }
-  hasMemberSort(fieldName: string): Promise<boolean> { return this._flatTable.hasMemberSort(fieldName); }
-  addMemberSort(sort: MemberSortInputParams): Promise<void> { return this._flatTable.addMemberSort(sort); }
-  getMemberSort(fieldName: string): Promise<MemberSortOutputParams> { return this._flatTable.getMemberSort(fieldName); }
-  setMemberSort(sort: MemberSortInputParams): Promise<void> { return this._flatTable.setMemberSort(sort); }
-  clearMemberSort(fieldName?: string): Promise<void> { return this._flatTable.clearMemberSort(fieldName); }
   getCell(rowIdx: number, colIdx: number): IGridCellObject { return this._flatTable.getCell(rowIdx, colIdx); }
   getSelectedCells(): IGridCellObject[] { return this._flatTable.getSelectedCells(); }
   scrollToColumn(colIdx: number): void { this._flatTable.scrollToColumn(colIdx); }
