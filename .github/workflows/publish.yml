@@ -1,0 +1,101 @@
+name: Publish @flexmonster/angular to npm
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (used for @flexmonster/angular and the @flexmonster/js peer dependency)'
+        required: true
+        type: string
+      tag:
+        description: 'npm dist-tag to publish under'
+        required: true
+        type: choice
+        default: 'next'
+        options:
+          - latest
+          - next
+          - beta
+      dry_run:
+        description: 'Dry run (do not actually publish to npm)'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve version and dist-tag
+        id: version
+        run: |
+          VERSION="${{ inputs.version }}"
+          DIST_TAG="${{ inputs.tag }}"
+          echo "value=$VERSION"           >> "$GITHUB_OUTPUT"
+          echo "dist_tag=$DIST_TAG"       >> "$GITHUB_OUTPUT"
+          echo "tag_flag=--tag $DIST_TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@flexmonster'
+
+      - name: Check if version already exists
+        run: |
+          PKG_NAME=$(node -p "require('./projects/flexmonster/angular/package.json').name")
+          VERSION="${{ steps.version.outputs.value }}"
+          if npm view "${PKG_NAME}@${VERSION}" version --registry https://registry.npmjs.org 2>/dev/null; then
+            echo "::error::Version ${VERSION} already exists on npm."
+            exit 1
+          fi
+
+      - name: Set package version
+        working-directory: projects/flexmonster/angular
+        run: npm version "${{ steps.version.outputs.value }}" --no-git-tag-version
+
+      - name: Bump @flexmonster/js peer dependency
+        working-directory: projects/flexmonster/angular
+        env:
+          NEW_VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            if (pkg.peerDependencies && pkg.peerDependencies['@flexmonster/js']) {
+              pkg.peerDependencies['@flexmonster/js'] = process.env.NEW_VERSION;
+              fs.writeFileSync('package.json', JSON.stringify(pkg, null, 4) + '\n');
+            }
+          "
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build
+        run: npx ng build @flexmonster/angular
+
+      - name: Copy LICENSE and README to release folder
+        run: |
+          cp LICENSE   dist/flexmonster/angular/LICENSE
+          cp README.md dist/flexmonster/angular/README.md
+
+      - name: Show package.json after version bump
+        run: cat dist/flexmonster/angular/package.json
+
+      - name: Publish package (dry run)
+        if: ${{ inputs.dry_run }}
+        working-directory: dist/flexmonster/angular
+        run: npm publish ${{ steps.version.outputs.tag_flag }} --dry-run
+
+      - name: Publish package
+        if: ${{ !inputs.dry_run }}
+        working-directory: dist/flexmonster/angular
+        run: npm publish ${{ steps.version.outputs.tag_flag }}

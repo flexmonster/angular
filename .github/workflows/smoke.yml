@@ -1,8 +1,6 @@
 name: smoke
 
 on:
-  push:
-    branches: [master]
   pull_request:
   workflow_dispatch:
     inputs:
@@ -22,12 +20,12 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-          registry-url: 'https://npm.pkg.github.com'
+          registry-url: 'https://registry.npmjs.org'
           scope: '@flexmonster'
 
       - run: npm ci
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - run: npm test
 
