@@ -56,6 +56,10 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
   getMemberFilter(fieldName: string): Promise<MemberFilterOutputParams> { return this._flexmonster.getMemberFilter(fieldName); }
   setMemberFilter(filter: MemberFilterInputParams): Promise<void> { return this._flexmonster.setMemberFilter(filter); }
   clearMemberFilter(fieldName: string): Promise<void> { return this._flexmonster.clearMemberFilter(fieldName); }
+  getConditionalFilters(fieldName: string): Promise<FilterOutputParams[]> { return this._flexmonster.getConditionalFilters(fieldName); }
+  setConditionalFilters(filters: FilterInputParams[]): Promise<void> { return this._flexmonster.setConditionalFilters(filters); }
+  addConditionalFilter(filter: FilterInputParams): Promise<void> { return this._flexmonster.addConditionalFilter(filter); }
+  clearConditionalFilters(fieldName: string): Promise<void> { return this._flexmonster.clearConditionalFilters(fieldName); }
   hasSort(): Promise<boolean> { return this._flexmonster.hasSort(); }
   getSort(): Promise<SortOutputParams[]> { return this._flexmonster.getSort(); }
   setSort(sort: SortInputParams[]): Promise<void> { return this._flexmonster.setSort(sort); }

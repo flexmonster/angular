@@ -57,6 +57,10 @@ export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
   getMemberFilter(fieldName: string): Promise<MemberFilterOutputParams> { return this._pivotTable.getMemberFilter(fieldName); }
   setMemberFilter(filter: MemberFilterInputParams): Promise<void> { return this._pivotTable.setMemberFilter(filter); }
   clearMemberFilter(fieldName: string): Promise<void> { return this._pivotTable.clearMemberFilter(fieldName); }
+  getConditionalFilters(fieldName: string): Promise<FilterOutputParams[]> { return this._pivotTable.getConditionalFilters(fieldName); }
+  setConditionalFilters(filters: FilterInputParams[]): Promise<void> { return this._pivotTable.setConditionalFilters(filters); }
+  addConditionalFilter(filter: FilterInputParams): Promise<void> { return this._pivotTable.addConditionalFilter(filter); }
+  clearConditionalFilters(fieldName: string): Promise<void> { return this._pivotTable.clearConditionalFilters(fieldName); }
   hasSort(): Promise<boolean> { return this._pivotTable.hasSort(); }
   getSort(): Promise<SortOutputParams[]> { return this._pivotTable.getSort(); }
   setSort(sort: SortInputParams[]): Promise<void> { return this._pivotTable.setSort(sort); }
