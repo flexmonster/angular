@@ -26,12 +26,14 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       id-token: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
 
       - name: Resolve version and dist-tag
         id: version
@@ -99,3 +101,18 @@ jobs:
         if: ${{ !inputs.dry_run }}
         working-directory: dist/flexmonster/angular
         run: npm publish ${{ steps.version.outputs.tag_flag }}
+
+      - name: Commit and push version bump
+        if: ${{ !inputs.dry_run }}
+        env:
+          VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projects/flexmonster/angular/package.json package.json package-lock.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Release v$VERSION"
+          git push origin "HEAD:${GITHUB_REF#refs/heads/}"
