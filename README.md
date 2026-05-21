@@ -1,5 +1,5 @@
 # Flexmonster Pivot 3.0 (preview) wrapper for Angular
-
+[![Flexmonster Pivot](https://cdn.flexmonster.com/readmes/angular_30.webp)](https://prerelease.flexmonster.com/?r=wrap_30_ang)
 Website: [prerelease.flexmonster.com](https://prerelease.flexmonster.com/?r=wrap_30_ang)
 
 [![Github Stars](https://img.shields.io/github/stars/flexmonster?style=social)](https://github.com/flexmonster) [![X](https://img.shields.io/twitter/follow/Flexmonster?style=social)](https://x.com/Flexmonster)
