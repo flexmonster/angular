@@ -8,6 +8,7 @@ import {
   type MemberFilterOutputParams,
   type ConditionalFilterInputParams,
   type ConditionalFilterOutputParams,
+  ConditionalFilterControlInputParams,
   ConditionalFilterControlOutputParams,
   MemberFilterControlOutputParams,
 } from '@flexmonster/js';
@@ -52,7 +53,7 @@ export class FMFilter implements AfterViewInit, OnDestroy, IFMFilter {
   setMemberFilter(filter: MemberFilterInputParams): Promise<void> { return this._filter.setMemberFilter(filter); }
   clearMemberFilter(): Promise<void> { return this._filter.clearMemberFilter(); }
   getConditionalFilters(): Promise<ConditionalFilterControlOutputParams[]> { return this._filter.getConditionalFilters(); }
-  addConditionalFilter(filter: ConditionalFilterInputParams | ConditionalFilterInputParams[]): Promise<void> { return this._filter.addConditionalFilter(filter); }
+  addConditionalFilter(filter: ConditionalFilterControlInputParams): Promise<void> { return this._filter.addConditionalFilter(filter); }
   setConditionalFilters(filters: ConditionalFilterInputParams[]): Promise<void> { return this._filter.setConditionalFilters(filters); }
   clearConditionalFilters(): Promise<void> { return this._filter.clearConditionalFilters(); }
   getSortOrder(): Promise<string> { return this._filter.getSortOrder(); }
