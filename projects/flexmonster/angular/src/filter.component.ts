@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from '@angular
 import {
   Filter,
   type IFMFilter,
-  type IFMFilterInputParams,
+  type IFilterOptionsInputParams,
   type StateInputParams,
   type MemberFilterInputParams,
   type MemberFilterOutputParams,
@@ -20,7 +20,7 @@ import {
 })
 export class FMFilter implements AfterViewInit, OnDestroy, IFMFilter {
   @Input() state: StateInputParams | undefined;
-  @Input() options: IFMFilterInputParams | undefined;
+  @Input() options: IFilterOptionsInputParams | undefined;
   @Input() fieldName: string | undefined;
 
   protected root: HTMLElement;
