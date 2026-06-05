@@ -14,6 +14,8 @@ import {
   FMCompositeViewType,
   SortInputParams,
   SortOutputParams,
+  type FlatSortInputParams,
+  type FlatSortOutputParams,
 } from '@flexmonster/js';
 
 @Component({
@@ -63,9 +65,14 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
   hasSort(): Promise<boolean> { return this._flexmonster.hasSort(); }
   getSort(): Promise<SortOutputParams[]> { return this._flexmonster.getSort(); }
   setSort(sort: SortInputParams[]): Promise<void> { return this._flexmonster.setSort(sort); }
+  addSort(sort: SortInputParams): Promise<void> { return this._flexmonster.addSort(sort); }
   clearSort(): Promise<void> { return this._flexmonster.clearSort(); }
+  hasFlatSort(fieldName?: string): Promise<boolean> { return this._flexmonster.hasFlatSort(fieldName); }
+  getFlatSort(fieldName?: string): Promise<FlatSortOutputParams[]> { return this._flexmonster.getFlatSort(fieldName); }
+  setFlatSort(sort: FlatSortInputParams[]): Promise<void> { return this._flexmonster.setFlatSort(sort); }
+  addFlatSort(sort: FlatSortInputParams): Promise<void> { return this._flexmonster.addFlatSort(sort); }
+  clearFlatSort(fieldName?: string): Promise<void> { return this._flexmonster.clearFlatSort(fieldName); }
   hasMemberSort(fieldName: string): Promise<boolean> { return this._flexmonster.hasMemberSort(fieldName); }
-  addMemberSort(sort: MemberSortInputParams): Promise<void> { return this._flexmonster.addMemberSort(sort); }
   getMemberSort(fieldName: string): Promise<MemberSortOutputParams> { return this._flexmonster.getMemberSort(fieldName); }
   setMemberSort(sort: MemberSortInputParams): Promise<void> { return this._flexmonster.setMemberSort(sort); }
   clearMemberSort(fieldName?: string): Promise<void> { return this._flexmonster.clearMemberSort(fieldName); }

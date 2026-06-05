@@ -8,10 +8,8 @@ import {
   type FilterOutputParams,
   type MemberFilterInputParams,
   type MemberFilterOutputParams,
-  type SortInputParams,
-  type SortOutputParams,
-  type MemberSortInputParams,
-  type MemberSortOutputParams,
+  type FlatSortInputParams,
+  type FlatSortOutputParams,
   type IGridCellObject,
 } from '@flexmonster/js';
 
@@ -61,10 +59,11 @@ export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
   setConditionalFilters(filters: FilterInputParams[]): Promise<void> { return this._flatTable.setConditionalFilters(filters); }
   addConditionalFilter(filter: FilterInputParams): Promise<void> { return this._flatTable.addConditionalFilter(filter); }
   clearConditionalFilters(fieldName: string): Promise<void> { return this._flatTable.clearConditionalFilters(fieldName); }
-  hasSort(): Promise<boolean> { return this._flatTable.hasSort(); }
-  getSort(): Promise<SortOutputParams[]> { return this._flatTable.getSort(); }
-  setSort(sort: SortInputParams[]): Promise<void> { return this._flatTable.setSort(sort); }
-  clearSort(): Promise<void> { return this._flatTable.clearSort(); }
+  hasSort(fieldName?: string): Promise<boolean> { return this._flatTable.hasSort(fieldName); }
+  getSort(fieldName?: string): Promise<FlatSortOutputParams[]> { return this._flatTable.getSort(fieldName); }
+  setSort(sort: FlatSortInputParams[]): Promise<void> { return this._flatTable.setSort(sort); }
+  addSort(sort: FlatSortInputParams): Promise<void> { return this._flatTable.addSort(sort); }
+  clearSort(fieldName?: string): Promise<void> { return this._flatTable.clearSort(fieldName); }
   getCell(rowIdx: number, colIdx: number): IGridCellObject { return this._flatTable.getCell(rowIdx, colIdx); }
   getSelectedCells(): IGridCellObject[] { return this._flatTable.getSelectedCells(); }
   scrollToColumn(colIdx: number): void { this._flatTable.scrollToColumn(colIdx); }
