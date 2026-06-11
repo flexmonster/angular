@@ -6,6 +6,7 @@ import { FMPivotTable } from './pivot-table.component';
 import { FMPivotFieldList } from './pivot-field-list.component';
 import { FMToolbar } from './toolbar.component';
 import { FMFilter } from './filter.component';
+import { FMGroup } from './group.component';
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import { FMFilter } from './filter.component';
         FMPivotFieldList,
         FMToolbar,
         FMFilter,
+        FMGroup,
     ],
     exports: [
         FMFlexmonster,
@@ -25,6 +27,7 @@ import { FMFilter } from './filter.component';
         FMPivotFieldList,
         FMToolbar,
         FMFilter,
+        FMGroup,
     ]
 })
 export class FMModule{ }

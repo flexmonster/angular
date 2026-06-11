@@ -24,6 +24,12 @@
 <ngx-fm-pivot-table #pivot [state]="stateFmPivot"></ngx-fm-pivot-table>
 <ngx-fm-pivot-field-list #fieldListPivot [state]="stateFmPivot"></ngx-fm-pivot-field-list>
 
+<h2 id="group">Group (shared state)</h2>
+<ngx-fm-group [state]="stateGroup">
+	<ngx-fm-pivot-table></ngx-fm-pivot-table>
+	<ngx-fm-pivot-field-list></ngx-fm-pivot-field-list>
+</ngx-fm-group>
+
 <h2 id="toolkit">Toolkit elements use example</h2>
 <fm-button size="sm" [disabled]="disabled">Custom Button</fm-button>
 <fm-selectable-list data-provider="1,2,3"></fm-selectable-list>

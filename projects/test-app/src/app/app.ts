@@ -2,7 +2,7 @@ import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, signal, viewChild } f
 import { RouterOutlet } from '@angular/router';
 
 //Import Flexmonster Angular SSR components
-import { FMFlexmonster, FMFlatFieldList, FMFlatTable, FMPivotFieldList, FMPivotTable, FMToolbar } from '@flexmonster/angular/ssr';
+import { FMFlexmonster, FMFlatFieldList, FMFlatTable, FMPivotFieldList, FMPivotTable, FMToolbar, FMGroup } from '@flexmonster/angular/ssr';
 
 //Import Flexmonster Angular CSR components
 // import { FMFlexmonster, FMFlatTable, FMPivotTable, FMToolbar, FMFlatFieldList, FMPivotFieldList } from '@flexmonster/angular';
@@ -18,7 +18,7 @@ import { FMCompositeViewType, IFMFlexmonsterOptionsInputParams, StateInputParams
 
 @Component({
 	selector: 'app-root',
-	imports: [FMFlexmonster, FMFlatFieldList, FMFlatTable, FMPivotFieldList, FMPivotTable, FMToolbar, ToolbarComponent],
+	imports: [FMFlexmonster, FMFlatFieldList, FMFlatTable, FMPivotFieldList, FMPivotTable, FMToolbar, FMGroup, ToolbarComponent],
 	templateUrl: './app.html',
 	//Allow FM custom elements
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -146,6 +146,50 @@ export class App implements AfterViewInit {
 	public stateFmPivot: StateInputParams =
 		{
 			"id": "state-2",
+			"dataset": {
+				"dataSource": {
+					"data": [{
+						"Year": 2021,
+						"Gender": "Male",
+						"Name": "Liam",
+						"Count": 20000,
+						"State": "CA"
+					}],
+					"type": "json"
+				}
+			},
+			"slice": {
+				"rows": [
+					{
+						"fieldName": "Year"
+					},
+					{
+						"fieldName": "Gender"
+					},
+					{
+						"fieldName": "Name"
+					}
+				],
+				"values": [
+					{
+						"fieldName": "Count",
+						"aggregation": "sum"
+					}
+				],
+				"columns": [
+					{
+						"fieldName": "State"
+					}
+				]
+			}
+		};
+
+	//#region flexmonster group (shared state)
+	// A single state shared by every control inside <ngx-fm-group>.
+	// The pivot table and field list below inherit this state and stay in sync.
+	public stateGroup: StateInputParams =
+		{
+			"id": "state-group",
 			"dataset": {
 				"dataSource": {
 					"data": [{

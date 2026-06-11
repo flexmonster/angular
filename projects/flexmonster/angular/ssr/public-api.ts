@@ -6,3 +6,4 @@ export * from './pivot-table.component';
 export * from './pivot-field-list.component';
 export * from './toolbar.component';
 export * from './filter.component';
+export * from './group.component';
