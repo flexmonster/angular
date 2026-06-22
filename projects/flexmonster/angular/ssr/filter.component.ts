@@ -1,5 +1,5 @@
 import { Component, Input, ViewContainerRef } from '@angular/core';
-import type { IFMFilter, IFMFilterInputParams, StateInputParams } from '@flexmonster/js';
+import type { IFilterOptionsInputParams, IFMFilter, StateInputParams } from '@flexmonster/js';
 import { FMSsrBase } from './flexmonster-ssr-base.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { FMSsrBase } from './flexmonster-ssr-base.component';
 })
 export class FMFilter extends FMSsrBase {
   @Input() state: StateInputParams | undefined;
-  @Input() options: IFMFilterInputParams | undefined;
+  @Input() options: IFilterOptionsInputParams | undefined;
   @Input() fieldName: string | undefined;
 
   public filter!: IFMFilter;
