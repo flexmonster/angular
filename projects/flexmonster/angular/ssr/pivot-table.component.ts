@@ -10,6 +10,7 @@ import { FMSsrBase } from './flexmonster-ssr-base.component';
 export class FMPivotTable extends FMSsrBase {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMPivotTableOptionsInputParams | undefined;
+  @Input() name: string | undefined;
 
   public pivotTable!: IFMPivotTable;
 
@@ -20,6 +21,7 @@ export class FMPivotTable extends FMSsrBase {
       const ref = this.vcr.createComponent(FMPivotTable);
       ref.setInput('state', this.state);
       ref.setInput('options', this.options);
+      ref.setInput('name', this.name);
       ref.changeDetectorRef.detectChanges();
       this.pivotTable = ref.instance;
     });

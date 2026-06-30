@@ -10,6 +10,7 @@ import { FMSsrBase } from './flexmonster-ssr-base.component';
 export class FMFlatTable extends FMSsrBase {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMFlatTableOptionsInputParams | undefined;
+  @Input() name: string | undefined;
 
   public flatTable!: IFMFlatTable;
 
@@ -20,6 +21,7 @@ export class FMFlatTable extends FMSsrBase {
       const ref = this.vcr.createComponent(FMFlatTable);
       ref.setInput('state', this.state);
       ref.setInput('options', this.options);
+      ref.setInput('name', this.name);
       ref.changeDetectorRef.detectChanges();
       this.flatTable = ref.instance;
     });
