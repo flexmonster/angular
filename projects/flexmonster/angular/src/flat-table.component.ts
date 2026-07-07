@@ -21,6 +21,7 @@ import {
 export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMFlatTableOptionsInputParams | undefined;
+  @Input() name: string | undefined;
 
   protected root: HTMLElement;
   private _flatTable!: IFMFlatTable;
@@ -31,7 +32,7 @@ export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
 
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this._flatTable = FlatTable(container, { state: this.state, options: this.options });
+    this._flatTable = FlatTable(container, { state: this.state, options: this.options, name: this.name });
   }
 
   ngOnDestroy() {

@@ -23,6 +23,7 @@ import {
 export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMPivotTableOptionsInputParams | undefined;
+  @Input() name: string | undefined;
 
   protected root: HTMLElement;
   private _pivotTable!: IFMPivotTable;
@@ -33,7 +34,7 @@ export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
 
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this._pivotTable = PivotTable(container, { state: this.state, options: this.options });
+    this._pivotTable = PivotTable(container, { state: this.state, options: this.options, name: this.name });
   }
 
   ngOnDestroy() {

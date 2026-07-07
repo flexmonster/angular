@@ -14,6 +14,7 @@ import {
 export class FMToolbar implements AfterViewInit, OnDestroy, IFMToolbar {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMToolbarOptionsInputParams | undefined;
+  @Input() for: string | undefined;
 
   protected root: HTMLElement;
   private _toolbar!: IFMToolbar;
@@ -24,7 +25,9 @@ export class FMToolbar implements AfterViewInit, OnDestroy, IFMToolbar {
 
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this._toolbar = Toolbar(container, { state: this.state, options: this.options });
+    // The standalone `for` input takes priority; fall back to `options.for` when it is empty.
+    const options = this.for ? { ...this.options, for: this.for } : this.options;
+    this._toolbar = Toolbar(container, { state: this.state, options });
   }
 
   ngOnDestroy() {
