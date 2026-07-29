@@ -11,6 +11,8 @@ import {
   type MemberSortInputParams,
   type MemberSortOutputParams,
   type IGridCellObject,
+  type ReportInputParams,
+  type ReportOutputParams,
   FMCompositeViewType,
   SortInputParams,
   SortOutputParams,
@@ -76,6 +78,8 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
   getMemberSort(fieldName: string): Promise<MemberSortOutputParams> { return this._flexmonster.getMemberSort(fieldName); }
   setMemberSort(sort: MemberSortInputParams): Promise<void> { return this._flexmonster.setMemberSort(sort); }
   clearMemberSort(fieldName?: string): Promise<void> { return this._flexmonster.clearMemberSort(fieldName); }
+  getReport(): ReportOutputParams { return this._flexmonster.getReport(); }
+  setReport(report: ReportInputParams): void { this._flexmonster.setReport(report); }
   closeFieldList(): void { this._flexmonster.closeFieldList(); }
   dispose(): void { this._flexmonster.dispose(); }
   getCell(rowIndex: number, columnIndex: number): IGridCellObject { return this._flexmonster.getCell(rowIndex, columnIndex); }

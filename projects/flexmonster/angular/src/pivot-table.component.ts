@@ -13,6 +13,8 @@ import {
   type MemberSortInputParams,
   type MemberSortOutputParams,
   type IGridCellObject,
+  type ReportInputParams,
+  type ReportOutputParams,
 } from '@flexmonster/js';
 
 @Component({
@@ -72,6 +74,8 @@ export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
   setMemberSort(sort: MemberSortInputParams): Promise<void> { return this._pivotTable.setMemberSort(sort); }
   clearMemberSort(fieldName?: string): Promise<void> { return this._pivotTable.clearMemberSort(fieldName); }
   getCell(rowIdx: number, colIdx: number): IGridCellObject { return this._pivotTable.getCell(rowIdx, colIdx); }
+  getReport(): ReportOutputParams { return this._pivotTable.getReport(); }
+  setReport(report: ReportInputParams): void { this._pivotTable.setReport(report); }
   getSelectedCells(): IGridCellObject[] { return this._pivotTable.getSelectedCells(); }
   scrollToColumn(colIdx: number): void { this._pivotTable.scrollToColumn(colIdx); }
   scrollToRow(rowIdx: number): void { this._pivotTable.scrollToRow(rowIdx); }
