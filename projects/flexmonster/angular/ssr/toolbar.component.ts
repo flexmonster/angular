@@ -11,6 +11,7 @@ import { FM_STATE_CONTEXT } from './state-context';
 export class FMToolbar extends FMSsrBase {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMToolbarOptionsInputParams | undefined;
+  @Input() for: string | undefined;
 
   public toolbar!: IFMToolbar;
 
@@ -23,6 +24,7 @@ export class FMToolbar extends FMSsrBase {
       const ref = this.vcr.createComponent(FMToolbar);
       ref.setInput('state', this.state ?? this.stateContext?.state);
       ref.setInput('options', this.options);
+      ref.setInput('for', this.for);
       ref.changeDetectorRef.detectChanges();
       this.toolbar = ref.instance;
     });

@@ -4,13 +4,10 @@ import {
   type IFMFilter,
   type IFilterOptionsInputParams,
   type StateInputParams,
-  type MemberFilterInputParams,
-  type MemberFilterOutputParams,
-  type ConditionalFilterInputParams,
-  type ConditionalFilterOutputParams,
-  ConditionalFilterControlInputParams,
-  ConditionalFilterControlOutputParams,
-  MemberFilterControlOutputParams,
+  type MemberFilterControlInputParams,
+  type MemberFilterControlOutputParams,
+  type ConditionalFilterControlInputParams,
+  type ConditionalFilterControlOutputParams,
 } from '@flexmonster/js';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -51,11 +48,11 @@ export class FMFilter implements AfterViewInit, OnDestroy, IFMFilter {
   getOptions(): any { return this._filter.getOptions(); }
   dispose(): void { this._filter.dispose(); }
   getMemberFilter(): Promise<MemberFilterControlOutputParams> { return this._filter.getMemberFilter(); }
-  setMemberFilter(filter: MemberFilterInputParams): Promise<void> { return this._filter.setMemberFilter(filter); }
+  setMemberFilter(filter: MemberFilterControlInputParams): Promise<void> { return this._filter.setMemberFilter(filter); }
   clearMemberFilter(): Promise<void> { return this._filter.clearMemberFilter(); }
   getConditionalFilters(): Promise<ConditionalFilterControlOutputParams[]> { return this._filter.getConditionalFilters(); }
   addConditionalFilter(filter: ConditionalFilterControlInputParams): Promise<void> { return this._filter.addConditionalFilter(filter); }
-  setConditionalFilters(filters: ConditionalFilterInputParams[]): Promise<void> { return this._filter.setConditionalFilters(filters); }
+  setConditionalFilters(filters: ConditionalFilterControlInputParams[]): Promise<void> { return this._filter.setConditionalFilters(filters); }
   clearConditionalFilters(): Promise<void> { return this._filter.clearConditionalFilters(); }
   getSortOrder(): Promise<string> { return this._filter.getSortOrder(); }
   setSortOrder(order: string): Promise<void> { return this._filter.setSortOrder(order); }

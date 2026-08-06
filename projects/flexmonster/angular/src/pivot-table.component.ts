@@ -13,6 +13,8 @@ import {
   type MemberSortInputParams,
   type MemberSortOutputParams,
   type IGridCellObject,
+  type ReportInputParams,
+  type ReportOutputParams,
 } from '@flexmonster/js';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -24,6 +26,7 @@ import { FM_STATE_CONTEXT } from './state-context';
 export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMPivotTableOptionsInputParams | undefined;
+  @Input() name: string | undefined;
 
   protected root: HTMLElement;
   private _pivotTable!: IFMPivotTable;
@@ -36,7 +39,7 @@ export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
     const state = this.state ?? this.stateContext?.state;
-    this._pivotTable = PivotTable(container, { state, options: this.options });
+    this._pivotTable = PivotTable(container, { state: state, options: this.options, name: this.name });
   }
 
   ngOnDestroy() {
@@ -72,6 +75,8 @@ export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
   setMemberSort(sort: MemberSortInputParams): Promise<void> { return this._pivotTable.setMemberSort(sort); }
   clearMemberSort(fieldName?: string): Promise<void> { return this._pivotTable.clearMemberSort(fieldName); }
   getCell(rowIdx: number, colIdx: number): IGridCellObject { return this._pivotTable.getCell(rowIdx, colIdx); }
+  getReport(): ReportOutputParams { return this._pivotTable.getReport(); }
+  setReport(report: ReportInputParams): void { this._pivotTable.setReport(report); }
   getSelectedCells(): IGridCellObject[] { return this._pivotTable.getSelectedCells(); }
   scrollToColumn(colIdx: number): void { this._pivotTable.scrollToColumn(colIdx); }
   scrollToRow(rowIdx: number): void { this._pivotTable.scrollToRow(rowIdx); }

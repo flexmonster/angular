@@ -11,6 +11,8 @@ import {
   type FlatSortInputParams,
   type FlatSortOutputParams,
   type IGridCellObject,
+  type ReportInputParams,
+  type ReportOutputParams,
 } from '@flexmonster/js';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -22,6 +24,7 @@ import { FM_STATE_CONTEXT } from './state-context';
 export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
   @Input() state: StateInputParams | undefined;
   @Input() options: IFMFlatTableOptionsInputParams | undefined;
+  @Input() name: string | undefined;
 
   protected root: HTMLElement;
   private _flatTable!: IFMFlatTable;
@@ -34,7 +37,7 @@ export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
     const state = this.state ?? this.stateContext?.state;
-    this._flatTable = FlatTable(container, { state, options: this.options });
+    this._flatTable = FlatTable(container, { state: state, options: this.options, name: this.name });
   }
 
   ngOnDestroy() {
@@ -66,6 +69,8 @@ export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
   addSort(sort: FlatSortInputParams): Promise<void> { return this._flatTable.addSort(sort); }
   clearSort(fieldName?: string): Promise<void> { return this._flatTable.clearSort(fieldName); }
   getCell(rowIdx: number, colIdx: number): IGridCellObject { return this._flatTable.getCell(rowIdx, colIdx); }
+  getReport(): ReportOutputParams { return this._flatTable.getReport(); }
+  setReport(report: ReportInputParams): void { this._flatTable.setReport(report); }
   getSelectedCells(): IGridCellObject[] { return this._flatTable.getSelectedCells(); }
   scrollToColumn(colIdx: number): void { this._flatTable.scrollToColumn(colIdx); }
   scrollToRow(rowIdx: number): void { this._flatTable.scrollToRow(rowIdx); }
