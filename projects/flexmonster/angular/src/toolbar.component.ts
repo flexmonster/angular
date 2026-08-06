@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Input, OnDestroy } from '@angular/core';
 import {
   Toolbar,
   type IFMToolbar,
   type IFMToolbarOptionsInputParams,
   type StateInputParams,
 } from '@flexmonster/js';
+import { FM_STATE_CONTEXT } from './state-context';
 
 @Component({
   selector: 'ngx-fm-toolbar',
@@ -17,6 +18,7 @@ export class FMToolbar implements AfterViewInit, OnDestroy, IFMToolbar {
 
   protected root: HTMLElement;
   private _toolbar!: IFMToolbar;
+  private stateContext = inject(FM_STATE_CONTEXT, { optional: true });
 
   constructor(el: ElementRef) {
     this.root = el.nativeElement;
@@ -24,7 +26,8 @@ export class FMToolbar implements AfterViewInit, OnDestroy, IFMToolbar {
 
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this._toolbar = Toolbar(container, { state: this.state, options: this.options });
+    const state = this.state ?? this.stateContext?.state;
+    this._toolbar = Toolbar(container, { state, options: this.options });
   }
 
   ngOnDestroy() {
@@ -33,12 +36,10 @@ export class FMToolbar implements AfterViewInit, OnDestroy, IFMToolbar {
     }
   }
 
-  // Readonly properties
   get id(): string { return this._toolbar.id; }
   get parentId(): string { return this._toolbar.parentId; }
   get stateId(): string { return this._toolbar.stateId; }
 
-  // Methods
   getOptions(): any { return this._toolbar.getOptions(); }
   dispose(): void { this._toolbar.dispose(); }
   openFieldList(): void { this._toolbar.openFieldList(); }

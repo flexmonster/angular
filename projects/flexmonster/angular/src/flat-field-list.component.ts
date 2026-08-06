@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Input, OnDestroy } from '@angular/core';
 import {
   FlatFieldList,
   type IFMFlatFieldList,
   type IFMFlatFieldListOptionsInputParams,
   type StateInputParams,
 } from '@flexmonster/js';
+import { FM_STATE_CONTEXT } from './state-context';
 
 @Component({
   selector: 'ngx-fm-flat-field-list',
@@ -17,6 +18,7 @@ export class FMFlatFieldList implements AfterViewInit, OnDestroy, IFMFlatFieldLi
 
   protected root: HTMLElement;
   private _flatFieldList!: IFMFlatFieldList;
+  private stateContext = inject(FM_STATE_CONTEXT, { optional: true });
 
   constructor(el: ElementRef) {
     this.root = el.nativeElement;
@@ -24,7 +26,8 @@ export class FMFlatFieldList implements AfterViewInit, OnDestroy, IFMFlatFieldLi
 
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this._flatFieldList = FlatFieldList(container, { state: this.state, options: this.options });
+    const state = this.state ?? this.stateContext?.state;
+    this._flatFieldList = FlatFieldList(container, { state, options: this.options });
   }
 
   ngOnDestroy() {
@@ -33,12 +36,10 @@ export class FMFlatFieldList implements AfterViewInit, OnDestroy, IFMFlatFieldLi
     }
   }
 
-  // Readonly properties
   get id(): string { return this._flatFieldList.id; }
   get parentId(): string { return this._flatFieldList.parentId; }
   get stateId(): string { return this._flatFieldList.stateId; }
 
-  // Methods
   getOptions(): any { return this._flatFieldList.getOptions(); }
   dispose(): void { this._flatFieldList.dispose(); }
 }

@@ -1,6 +1,7 @@
-import { Component, Input, ViewContainerRef } from '@angular/core';
+import { Component, inject, Input, ViewContainerRef } from '@angular/core';
 import type { IFMPivotTable, IFMPivotTableOptionsInputParams, StateInputParams } from '@flexmonster/js';
 import { FMSsrBase } from './flexmonster-ssr-base.component';
+import { FM_STATE_CONTEXT } from './state-context';
 
 @Component({
   selector: 'ngx-fm-pivot-table',
@@ -13,12 +14,14 @@ export class FMPivotTable extends FMSsrBase {
 
   public pivotTable!: IFMPivotTable;
 
+  private stateContext = inject(FM_STATE_CONTEXT, { optional: true });
+
   constructor(private vcr: ViewContainerRef) {
     super();
     this.afterNextRenderLoaded(async () => {
       const { FMPivotTable } = await import('@flexmonster/angular');
       const ref = this.vcr.createComponent(FMPivotTable);
-      ref.setInput('state', this.state);
+      ref.setInput('state', this.state ?? this.stateContext?.state);
       ref.setInput('options', this.options);
       ref.changeDetectorRef.detectChanges();
       this.pivotTable = ref.instance;
