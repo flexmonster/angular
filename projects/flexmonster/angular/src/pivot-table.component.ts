@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Input, OnDestroy } from '@angular/core';
 import {
   PivotTable,
   type IFMPivotTable,
@@ -16,6 +16,7 @@ import {
   type ReportInputParams,
   type ReportOutputParams,
 } from '@flexmonster/js';
+import { FM_STATE_CONTEXT } from './state-context';
 
 @Component({
   selector: 'ngx-fm-pivot-table',
@@ -29,6 +30,7 @@ export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
 
   protected root: HTMLElement;
   private _pivotTable!: IFMPivotTable;
+  private stateContext = inject(FM_STATE_CONTEXT, { optional: true });
 
   constructor(el: ElementRef) {
     this.root = el.nativeElement;
@@ -36,7 +38,8 @@ export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
 
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this._pivotTable = PivotTable(container, { state: this.state, options: this.options, name: this.name });
+    const state = this.state ?? this.stateContext?.state;
+    this._pivotTable = PivotTable(container, { state: state, options: this.options, name: this.name });
   }
 
   ngOnDestroy() {
@@ -45,12 +48,10 @@ export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
     }
   }
 
-  // Readonly properties
   get id(): string { return this._pivotTable.id; }
   get parentId(): string { return this._pivotTable.parentId; }
   get stateId(): string { return this._pivotTable.stateId; }
 
-  // Methods
   getOptions(): any { return this._pivotTable.getOptions(); }
   dispose(): void { this._pivotTable.dispose(); }
   hasFilter(fieldName?: string): Promise<boolean> { return this._pivotTable.hasFilter(fieldName); }

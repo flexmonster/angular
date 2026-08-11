@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Input, OnDestroy } from '@angular/core';
 import {
   Flexmonster,
   type IFMFlexmonster,
@@ -19,6 +19,7 @@ import {
   type FlatSortInputParams,
   type FlatSortOutputParams,
 } from '@flexmonster/js';
+import { FM_STATE_CONTEXT } from './state-context';
 
 @Component({
   selector: 'ngx-fm-flexmonster',
@@ -31,6 +32,7 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
 
   protected root: HTMLElement;
   private _flexmonster!: IFMFlexmonster;
+  private stateContext = inject(FM_STATE_CONTEXT, { optional: true });
 
   constructor(el: ElementRef) {
     this.root = el.nativeElement;
@@ -38,7 +40,8 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
 
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this._flexmonster = Flexmonster(container, { state: this.state, options: this.options });
+    const state = this.state ?? this.stateContext?.state;
+    this._flexmonster = Flexmonster(container, { state, options: this.options });
   }
 
   ngOnDestroy() {
@@ -47,12 +50,10 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
     }
   }
 
-  // Readonly properties
   get id(): string { return this._flexmonster.id; }
   get parentId(): string { return this._flexmonster.parentId; }
   get stateId(): string { return this._flexmonster.stateId; }
 
-  // Methods
   hasFilter(fieldName?: string): Promise<boolean> { return this._flexmonster.hasFilter(fieldName); }
   getFilters(fieldName?: string): Promise<FilterOutputParams[]> { return this._flexmonster.getFilters(fieldName); }
   setFilters(filter: FilterInputParams[]): Promise<void> { return this._flexmonster.setFilters(filter); }

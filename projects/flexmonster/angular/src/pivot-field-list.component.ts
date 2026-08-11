@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Input, OnDestroy } from '@angular/core';
 import {
   PivotFieldList,
   type IFMPivotFieldList,
   type IFMPivotFieldListOptionsInputParams,
   type StateInputParams,
 } from '@flexmonster/js';
+import { FM_STATE_CONTEXT } from './state-context';
 
 @Component({
   selector: 'ngx-fm-pivot-field-list',
@@ -17,6 +18,7 @@ export class FMPivotFieldList implements AfterViewInit, OnDestroy, IFMPivotField
 
   protected root: HTMLElement;
   private _pivotFieldList!: IFMPivotFieldList;
+  private stateContext = inject(FM_STATE_CONTEXT, { optional: true });
 
   constructor(el: ElementRef) {
     this.root = el.nativeElement;
@@ -24,7 +26,8 @@ export class FMPivotFieldList implements AfterViewInit, OnDestroy, IFMPivotField
 
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this._pivotFieldList = PivotFieldList(container, { state: this.state, options: this.options });
+    const state = this.state ?? this.stateContext?.state;
+    this._pivotFieldList = PivotFieldList(container, { state, options: this.options });
   }
 
   ngOnDestroy() {
@@ -33,12 +36,10 @@ export class FMPivotFieldList implements AfterViewInit, OnDestroy, IFMPivotField
     }
   }
 
-  // Readonly properties
   get id(): string { return this._pivotFieldList.id; }
   get parentId(): string { return this._pivotFieldList.parentId; }
   get stateId(): string { return this._pivotFieldList.stateId; }
 
-  // Methods
   getOptions(): any { return this._pivotFieldList.getOptions(); }
   dispose(): void { this._pivotFieldList.dispose(); }
 }

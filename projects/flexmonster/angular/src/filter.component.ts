@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Input, OnDestroy } from '@angular/core';
 import {
   Filter,
   type IFMFilter,
@@ -9,6 +9,7 @@ import {
   type ConditionalFilterControlInputParams,
   type ConditionalFilterControlOutputParams,
 } from '@flexmonster/js';
+import { FM_STATE_CONTEXT } from './state-context';
 
 @Component({
   selector: 'ngx-fm-filter',
@@ -22,6 +23,7 @@ export class FMFilter implements AfterViewInit, OnDestroy, IFMFilter {
 
   protected root: HTMLElement;
   private _filter!: IFMFilter;
+  private stateContext = inject(FM_STATE_CONTEXT, { optional: true });
 
   constructor(el: ElementRef) {
     this.root = el.nativeElement;
@@ -29,7 +31,8 @@ export class FMFilter implements AfterViewInit, OnDestroy, IFMFilter {
 
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this._filter = Filter(container, { state: this.state, options: this.options, fieldName: this.fieldName! });
+    const state = this.state ?? this.stateContext?.state;
+    this._filter = Filter(container, { state, options: this.options, fieldName: this.fieldName! });
   }
 
   ngOnDestroy() {
@@ -38,12 +41,10 @@ export class FMFilter implements AfterViewInit, OnDestroy, IFMFilter {
     }
   }
 
-  // Readonly properties
   get id(): string { return this._filter.id; }
   get parentId(): string { return this._filter.parentId; }
   get stateId(): string { return this._filter.stateId; }
 
-  // Methods
   getOptions(): any { return this._filter.getOptions(); }
   dispose(): void { this._filter.dispose(); }
   getMemberFilter(): Promise<MemberFilterControlOutputParams> { return this._filter.getMemberFilter(); }

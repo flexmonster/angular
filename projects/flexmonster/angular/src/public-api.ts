@@ -1,8 +1,3 @@
-/*
- * Public API Surface of @flexmonster/angular
- */
-
-// CSR components (sync import, ngAfterViewInit)
 export * from './flexmonster.component';
 export * from './flat-table.component';
 export * from './flat-field-list.component';
@@ -10,5 +5,6 @@ export * from './pivot-table.component';
 export * from './pivot-field-list.component';
 export * from './toolbar.component';
 export * from './filter.component';
+export * from './group.component';
 
 export * from './flexmonster.module';

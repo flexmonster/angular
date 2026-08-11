@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Input, OnDestroy } from '@angular/core';
 import {
   FlatTable,
   type IFMFlatTable,
@@ -14,6 +14,7 @@ import {
   type ReportInputParams,
   type ReportOutputParams,
 } from '@flexmonster/js';
+import { FM_STATE_CONTEXT } from './state-context';
 
 @Component({
   selector: 'ngx-fm-flat-table',
@@ -27,6 +28,7 @@ export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
 
   protected root: HTMLElement;
   private _flatTable!: IFMFlatTable;
+  private stateContext = inject(FM_STATE_CONTEXT, { optional: true });
 
   constructor(el: ElementRef) {
     this.root = el.nativeElement;
@@ -34,7 +36,8 @@ export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
 
   ngAfterViewInit() {
     const container = this.root.getElementsByClassName('fm-ng-wrapper')[0] as HTMLElement;
-    this._flatTable = FlatTable(container, { state: this.state, options: this.options, name: this.name });
+    const state = this.state ?? this.stateContext?.state;
+    this._flatTable = FlatTable(container, { state: state, options: this.options, name: this.name });
   }
 
   ngOnDestroy() {
@@ -43,12 +46,10 @@ export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
     }
   }
 
-  // Readonly properties
   get id(): string { return this._flatTable.id; }
   get parentId(): string { return this._flatTable.parentId; }
   get stateId(): string { return this._flatTable.stateId; }
 
-  // Methods
   getOptions(): any { return this._flatTable.getOptions(); }
   dispose(): void { this._flatTable.dispose(); }
   hasFilter(fieldName?: string): Promise<boolean> { return this._flatTable.hasFilter(fieldName); }
