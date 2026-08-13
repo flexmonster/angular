@@ -1,6 +1,6 @@
 {
   "name": "@flexmonster/angular",
-  "version": "3.0.0-preview.5.1",
+  "version": "3.0.0-preview.5.2",
   "description": "Angular wrapper for Flexmonster Pivot",
   "license": "https://www.flexmonster.com/software-license-agreement/",
   "author": {
@@ -11,7 +11,7 @@
   "peerDependencies": {
     "@angular/common": "^21.1.0",
     "@angular/core": "^21.1.0",
-    "@flexmonster/js": "3.0.0-preview.5.1"
+    "@flexmonster/js": "3.0.0-preview.5.2"
   },
   "dependencies": {
     "tslib": "^2.3.0"
