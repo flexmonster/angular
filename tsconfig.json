@@ -43,10 +43,5 @@
     {
       "path": "./projects/test-app/tsconfig.spec.json"
     }
-  ],
-  // "paths": {
-  //   "@flexmonster/flexmonster/flexmonster": [
-  //     "./node_modules/@flexmonster/flexmonster/flexmonster.d.ts"
-  //   ]
-  // }
+  ]
 }
