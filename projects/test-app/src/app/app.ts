@@ -13,8 +13,8 @@ import '@flexmonster/js/flexmonster.css'
 
 //Import Toolbar component
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { FMCompositeViewType, IFMFlexmonsterOptionsInputParams, StateInputParams } from '@flexmonster/js';
-// import { DataSourceType, F16CompositeViewType } from '@flexmonster/js';
+import { FMMultiTableViewType, IFMFlexmonsterOptionsInputParams, StateInputParams } from '@flexmonster/js';
+// import { DataSourceType, F16MultiTableViewType } from '@flexmonster/js';
 
 @Component({
 	selector: 'app-root',
@@ -45,7 +45,7 @@ export class App implements AfterViewInit {
 
 	// Method to open the field list - test API calls
 	// Example of using Flexmonster reference passed from the same component
-	public async openFieldListComposite() {
+	public async openFieldListMultiTable() {
 		await this.composite().flexmonster.openFieldList();
 	}
 
@@ -67,8 +67,8 @@ export class App implements AfterViewInit {
 		alert(`Value of the first cell: ${cell.value}`);
 	}
 
-	public setViewType(type: `${FMCompositeViewType}`) {
-		this.composite().flexmonster.setViewType(type as FMCompositeViewType);
+	public setViewType(type: `${FMMultiTableViewType}`) {
+		this.composite().flexmonster.setViewType(type as FMMultiTableViewType);
 	}
 
 	// Test property binding with our toolkit element

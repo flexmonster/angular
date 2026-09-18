@@ -13,7 +13,7 @@ import {
   type IGridCellObject,
   type ReportInputParams,
   type ReportOutputParams,
-  FMCompositeViewType,
+  FMMultiTableViewType,
   SortInputParams,
   SortOutputParams,
   type FlatSortInputParams,
@@ -89,5 +89,5 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
   openFieldList(): void { this._flexmonster.openFieldList(); }
   scrollToColumn(columnIndex: number): void { this._flexmonster.scrollToColumn(columnIndex); }
   scrollToRow(rowIndex: number): void { this._flexmonster.scrollToRow(rowIndex); }
-  setViewType(viewType: `${FMCompositeViewType}`): void { this._flexmonster.setViewType(viewType); }
+  setViewType(viewType: `${FMMultiTableViewType}`): void { this._flexmonster.setViewType(viewType); }
 }
