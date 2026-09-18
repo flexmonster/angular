@@ -1,5 +1,5 @@
 import {
-  eCharts,
+  ECharts,
   type IFMECharts,
   type IFMEChartsInputParams,
   type FilterInputParams,
@@ -19,7 +19,7 @@ export class FMECharts implements IFMECharts {
   private _eCharts: IFMECharts;
 
   constructor(params: IFMEChartsInputParams) {
-    this._eCharts = eCharts(params);
+    this._eCharts = ECharts(params);
   }
 
   get id(): string { return this._eCharts.id; }
@@ -51,7 +51,7 @@ export class FMECharts implements IFMECharts {
 }
 
 export const FMCharts = {
-  eCharts(params: IFMEChartsInputParams): FMECharts {
+  ECharts(params: IFMEChartsInputParams): FMECharts {
     return new FMECharts(params);
   },
 };
