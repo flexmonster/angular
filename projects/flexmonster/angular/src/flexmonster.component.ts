@@ -17,7 +17,7 @@ import {
   type SortOutputParams,
   type FlatSortInputParams,
   type FlatSortOutputParams,
-  type FMGroupViewType,
+  type FMFlexmonsterViewType,
 } from '@flexmonster/js';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -89,5 +89,5 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
   openFieldList(): void { this._flexmonster.openFieldList(); }
   scrollToColumn(columnIndex: number): void { this._flexmonster.scrollToColumn(columnIndex); }
   scrollToRow(rowIndex: number): void { this._flexmonster.scrollToRow(rowIndex); }
-  setViewType(viewType: `${FMGroupViewType}`): void { this._flexmonster.setViewType(viewType); }
+  setViewType(viewType: `${FMFlexmonsterViewType}`): void { this._flexmonster.setViewType(viewType); }
 }
