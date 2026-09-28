@@ -45,7 +45,7 @@ export class App implements AfterViewInit {
 
 	// Method to open the field list - test API calls
 	// Example of using Flexmonster reference passed from the same component
-	public async openFieldListComposite() {
+	public async openFieldListMultiTable() {
 		await this.composite().flexmonster.openFieldList();
 	}
 
