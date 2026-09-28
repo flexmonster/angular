@@ -13,8 +13,8 @@ import '@flexmonster/js/flexmonster.css'
 
 //Import Toolbar component
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { FMMultiTableViewType, IFMFlexmonsterOptionsInputParams, StateInputParams } from '@flexmonster/js';
-// import { DataSourceType, F16MultiTableViewType } from '@flexmonster/js';
+import { FMFlexmonsterViewType, IFMFlexmonsterOptionsInputParams, StateInputParams } from '@flexmonster/js';
+// import { DataSourceType, F16CompositeViewType } from '@flexmonster/js';
 
 @Component({
 	selector: 'app-root',
@@ -67,8 +67,8 @@ export class App implements AfterViewInit {
 		alert(`Value of the first cell: ${cell.value}`);
 	}
 
-	public setViewType(type: `${FMMultiTableViewType}`) {
-		this.composite().flexmonster.setViewType(type as FMMultiTableViewType);
+	public setViewType(type: `${FMFlexmonsterViewType}`) {
+		this.composite().flexmonster.setViewType(type as FMFlexmonsterViewType);
 	}
 
 	// Test property binding with our toolkit element

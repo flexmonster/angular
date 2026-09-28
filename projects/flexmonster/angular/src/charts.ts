@@ -18,8 +18,8 @@ import {
 export class FMECharts implements IFMECharts {
   private _eCharts: IFMECharts;
 
-  constructor(params: IFMEChartsInputParams) {
-    this._eCharts = ECharts(params);
+  constructor(chart: object, params: IFMEChartsInputParams) {
+    this._eCharts = ECharts(chart, params);
   }
 
   get id(): string { return this._eCharts.id; }
@@ -51,7 +51,7 @@ export class FMECharts implements IFMECharts {
 }
 
 export const FMCharts = {
-  ECharts(params: IFMEChartsInputParams): FMECharts {
-    return new FMECharts(params);
+  ECharts(chart: object, params: IFMEChartsInputParams): FMECharts {
+    return new FMECharts(chart, params);
   },
 };
