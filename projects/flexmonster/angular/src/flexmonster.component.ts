@@ -13,7 +13,6 @@ import {
   type IGridCellObject,
   type ReportInputParams,
   type ReportOutputParams,
-  FMMultiTableViewType,
   SortInputParams,
   SortOutputParams,
   type FlatSortInputParams,
@@ -54,6 +53,7 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
   get id(): string { return this._flexmonster.id; }
   get parentId(): string { return this._flexmonster.parentId; }
   get stateId(): string { return this._flexmonster.stateId; }
+  get active(): boolean { return this._flexmonster.active; }
 
   hasFilter(fieldName?: string): Promise<boolean> { return this._flexmonster.hasFilter(fieldName); }
   getFilters(fieldName?: string): Promise<FilterOutputParams[]> { return this._flexmonster.getFilters(fieldName); }

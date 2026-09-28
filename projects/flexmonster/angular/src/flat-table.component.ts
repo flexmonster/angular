@@ -49,6 +49,7 @@ export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
   get id(): string { return this._flatTable.id; }
   get parentId(): string { return this._flatTable.parentId; }
   get stateId(): string { return this._flatTable.stateId; }
+  get active(): boolean { return this._flatTable.active; }
 
   getOptions(): any { return this._flatTable.getOptions(); }
   dispose(): void { this._flatTable.dispose(); }

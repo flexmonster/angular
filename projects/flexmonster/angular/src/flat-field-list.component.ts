@@ -39,6 +39,7 @@ export class FMFlatFieldList implements AfterViewInit, OnDestroy, IFMFlatFieldLi
   get id(): string { return this._flatFieldList.id; }
   get parentId(): string { return this._flatFieldList.parentId; }
   get stateId(): string { return this._flatFieldList.stateId; }
+  get active(): boolean { return this._flatFieldList.active; }
 
   getOptions(): any { return this._flatFieldList.getOptions(); }
   dispose(): void { this._flatFieldList.dispose(); }

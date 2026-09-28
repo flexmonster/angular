@@ -8,7 +8,7 @@ import {
   type MemberFilterOutputParams,
   type MemberSortInputParams,
   type MemberSortOutputParams,
-  type IChartDataLimitsObject,
+  type IChartDataLimitsOutputParams,
   type ChartSliceInputParams,
   type ChartSliceOutputParams,
   type ReportInputParams,
@@ -25,6 +25,7 @@ export class FMECharts implements IFMECharts {
   get id(): string { return this._eCharts.id; }
   get parentId(): string { return this._eCharts.parentId; }
   get stateId(): string { return this._eCharts.stateId; }
+  get active(): boolean { return this._eCharts.active; }
 
   getOptions(): any { return this._eCharts.getOptions(); }
   dispose(): void { this._eCharts.dispose(); }
@@ -43,7 +44,7 @@ export class FMECharts implements IFMECharts {
   getMemberSort(fieldName: string): Promise<MemberSortOutputParams> { return this._eCharts.getMemberSort(fieldName); }
   setMemberSort(sort: MemberSortInputParams): Promise<void> { return this._eCharts.setMemberSort(sort); }
   clearMemberSort(fieldName?: string): Promise<void> { return this._eCharts.clearMemberSort(fieldName); }
-  getDataLimits(): IChartDataLimitsObject { return this._eCharts.getDataLimits(); }
+  getDataLimits(): IChartDataLimitsOutputParams { return this._eCharts.getDataLimits(); }
   getReport(): ReportOutputParams { return this._eCharts.getReport(); }
   setReport(report: ReportInputParams): void { this._eCharts.setReport(report); }
   getSlice(): Promise<ChartSliceOutputParams> { return this._eCharts.getSlice(); }

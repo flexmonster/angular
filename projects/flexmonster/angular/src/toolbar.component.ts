@@ -42,6 +42,7 @@ export class FMToolbar implements AfterViewInit, OnDestroy, IFMToolbar {
   get id(): string { return this._toolbar.id; }
   get parentId(): string { return this._toolbar.parentId; }
   get stateId(): string { return this._toolbar.stateId; }
+  get active(): boolean { return this._toolbar.active; }
 
   getOptions(): any { return this._toolbar.getOptions(); }
   dispose(): void { this._toolbar.dispose(); }
