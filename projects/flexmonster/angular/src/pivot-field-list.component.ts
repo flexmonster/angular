@@ -39,6 +39,7 @@ export class FMPivotFieldList implements AfterViewInit, OnDestroy, IFMPivotField
   get id(): string { return this._pivotFieldList.id; }
   get parentId(): string { return this._pivotFieldList.parentId; }
   get stateId(): string { return this._pivotFieldList.stateId; }
+  get active(): boolean { return this._pivotFieldList.active; }
 
   getOptions(): any { return this._pivotFieldList.getOptions(); }
   dispose(): void { this._pivotFieldList.dispose(); }

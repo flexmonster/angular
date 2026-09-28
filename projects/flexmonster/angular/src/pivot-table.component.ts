@@ -51,6 +51,7 @@ export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
   get id(): string { return this._pivotTable.id; }
   get parentId(): string { return this._pivotTable.parentId; }
   get stateId(): string { return this._pivotTable.stateId; }
+  get active(): boolean { return this._pivotTable.active; }
 
   getOptions(): any { return this._pivotTable.getOptions(); }
   dispose(): void { this._pivotTable.dispose(); }

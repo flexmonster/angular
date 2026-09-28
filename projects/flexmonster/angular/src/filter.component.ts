@@ -44,6 +44,7 @@ export class FMFilter implements AfterViewInit, OnDestroy, IFMFilter {
   get id(): string { return this._filter.id; }
   get parentId(): string { return this._filter.parentId; }
   get stateId(): string { return this._filter.stateId; }
+  get active(): boolean { return this._filter.active; }
 
   getOptions(): any { return this._filter.getOptions(); }
   dispose(): void { this._filter.dispose(); }
