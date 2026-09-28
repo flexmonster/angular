@@ -18,6 +18,7 @@ import {
   SortOutputParams,
   type FlatSortInputParams,
   type FlatSortOutputParams,
+  type FMGroupViewType,
 } from '@flexmonster/js';
 import { FM_STATE_CONTEXT } from './state-context';
 
