@@ -15,6 +15,8 @@ import {
   type IGridCellObject,
   type ReportInputParams,
   type ReportOutputParams,
+  type SliceInputParams,
+  type SliceOutputParams,
 } from '@flexmonster/js';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -75,6 +77,8 @@ export class FMPivotTable implements AfterViewInit, OnDestroy, IFMPivotTable {
   getMemberSort(fieldName: string): Promise<MemberSortOutputParams> { return this._pivotTable.getMemberSort(fieldName); }
   setMemberSort(sort: MemberSortInputParams): Promise<void> { return this._pivotTable.setMemberSort(sort); }
   clearMemberSort(fieldName?: string): Promise<void> { return this._pivotTable.clearMemberSort(fieldName); }
+  getSlice(): Promise<SliceOutputParams> { return this._pivotTable.getSlice(); }
+  setSlice(slice: SliceInputParams): Promise<void> { return this._pivotTable.setSlice(slice); }
   getCell(rowIdx: number, colIdx: number): IGridCellObject { return this._pivotTable.getCell(rowIdx, colIdx); }
   getReport(): ReportOutputParams { return this._pivotTable.getReport(); }
   setReport(report: ReportInputParams): void { this._pivotTable.setReport(report); }

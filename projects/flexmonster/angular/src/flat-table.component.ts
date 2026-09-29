@@ -13,6 +13,8 @@ import {
   type IGridCellObject,
   type ReportInputParams,
   type ReportOutputParams,
+  type SliceInputParams,
+  type SliceOutputParams,
 } from '@flexmonster/js';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -64,6 +66,8 @@ export class FMFlatTable implements AfterViewInit, OnDestroy, IFMFlatTable {
   setConditionalFilters(filters: FilterInputParams[]): Promise<void> { return this._flatTable.setConditionalFilters(filters); }
   addConditionalFilter(filter: FilterInputParams): Promise<void> { return this._flatTable.addConditionalFilter(filter); }
   clearConditionalFilters(fieldName: string): Promise<void> { return this._flatTable.clearConditionalFilters(fieldName); }
+  getSlice(): Promise<SliceOutputParams> { return this._flatTable.getSlice(); }
+  setSlice(slice: SliceInputParams): Promise<void> { return this._flatTable.setSlice(slice); }
   hasSort(fieldName?: string): Promise<boolean> { return this._flatTable.hasSort(fieldName); }
   getSort(fieldName?: string): Promise<FlatSortOutputParams[]> { return this._flatTable.getSort(fieldName); }
   setSort(sort: FlatSortInputParams[]): Promise<void> { return this._flatTable.setSort(sort); }

@@ -18,6 +18,8 @@ import {
   type FlatSortInputParams,
   type FlatSortOutputParams,
   type FMFlexmonsterViewType,
+  type SliceInputParams,
+  type SliceOutputParams,
 } from '@flexmonster/js';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -80,6 +82,8 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
   getMemberSort(fieldName: string): Promise<MemberSortOutputParams> { return this._flexmonster.getMemberSort(fieldName); }
   setMemberSort(sort: MemberSortInputParams): Promise<void> { return this._flexmonster.setMemberSort(sort); }
   clearMemberSort(fieldName?: string): Promise<void> { return this._flexmonster.clearMemberSort(fieldName); }
+  getSlice(): Promise<SliceOutputParams> { return this._flexmonster.getSlice(); }
+  setSlice(slice: SliceInputParams): Promise<void> { return this._flexmonster.setSlice(slice); }
   getReport(): ReportOutputParams { return this._flexmonster.getReport(); }
   setReport(report: ReportInputParams): void { this._flexmonster.setReport(report); }
   closeFieldList(): void { this._flexmonster.closeFieldList(); }
