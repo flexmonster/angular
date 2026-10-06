@@ -8,6 +8,8 @@ import {
   type MemberFilterOutputParams,
   type MemberSortInputParams,
   type MemberSortOutputParams,
+  type SortInputParams,
+  type SortOutputParams,
   type IChartDataLimitsOutputParams,
   type ChartSliceInputParams,
   type ChartSliceOutputParams,
@@ -40,6 +42,11 @@ export class FMECharts implements IFMECharts {
   setConditionalFilters(filters: FilterInputParams[]): Promise<void> { return this._eCharts.setConditionalFilters(filters); }
   addConditionalFilter(filter: FilterInputParams): Promise<void> { return this._eCharts.addConditionalFilter(filter); }
   clearConditionalFilters(fieldName: string): Promise<void> { return this._eCharts.clearConditionalFilters(fieldName); }
+  hasSort(): Promise<boolean> { return this._eCharts.hasSort(); }
+  getSort(): Promise<SortOutputParams[]> { return this._eCharts.getSort(); }
+  setSort(sort: SortInputParams[]): Promise<void> { return this._eCharts.setSort(sort); }
+  addSort(sort: SortInputParams): Promise<void> { return this._eCharts.addSort(sort); }
+  clearSort(): Promise<void> { return this._eCharts.clearSort(); }
   hasMemberSort(fieldName: string): Promise<boolean> { return this._eCharts.hasMemberSort(fieldName); }
   getMemberSort(fieldName: string): Promise<MemberSortOutputParams> { return this._eCharts.getMemberSort(fieldName); }
   setMemberSort(sort: MemberSortInputParams): Promise<void> { return this._eCharts.setMemberSort(sort); }
