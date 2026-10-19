@@ -2,19 +2,19 @@ import {
   ECharts,
   type IFMECharts,
   type IFMEChartsInputParams,
-  type FilterInputParams,
-  type FilterOutputParams,
-  type MemberFilterInputParams,
-  type MemberFilterOutputParams,
-  type MemberSortInputParams,
-  type MemberSortOutputParams,
-  type SortInputParams,
-  type SortOutputParams,
-  type IChartDataLimitsOutputParams,
-  type ChartSliceInputParams,
-  type ChartSliceOutputParams,
-  type ReportInputParams,
-  type ReportOutputParams,
+  type FMFilterEntryInputParams,
+  type FMFilterEntryOutputParams,
+  type IFMMemberFilterEntryInputParams,
+  type IFMMemberFilterEntryOutputParams,
+  type IFMMemberSortInputParams,
+  type IFMMemberSortOutputParams,
+  type FMSortInputParams,
+  type FMSortOutputParams,
+  type IFMChartDataLimitsOutputParams,
+  type IFMChartSliceInputParams,
+  type IFMChartSliceOutputParams,
+  type IFMReportInputParams,
+  type IFMReportOutputParams,
 } from '@flexmonster/js';
 
 export class FMECharts implements IFMECharts {
@@ -32,30 +32,30 @@ export class FMECharts implements IFMECharts {
   getOptions(): any { return this._eCharts.getOptions(); }
   dispose(): void { this._eCharts.dispose(); }
   hasFilter(fieldName?: string): Promise<boolean> { return this._eCharts.hasFilter(fieldName); }
-  getFilters(fieldName?: string): Promise<FilterOutputParams[]> { return this._eCharts.getFilters(fieldName); }
-  setFilters(filter: FilterInputParams[]): Promise<void> { return this._eCharts.setFilters(filter); }
+  getFilters(fieldName?: string): Promise<FMFilterEntryOutputParams[]> { return this._eCharts.getFilters(fieldName); }
+  setFilters(filter: FMFilterEntryInputParams[]): Promise<void> { return this._eCharts.setFilters(filter); }
   clearFilters(fieldName?: string): Promise<void> { return this._eCharts.clearFilters(fieldName); }
-  getMemberFilter(fieldName: string): Promise<MemberFilterOutputParams> { return this._eCharts.getMemberFilter(fieldName); }
-  setMemberFilter(filter: MemberFilterInputParams): Promise<void> { return this._eCharts.setMemberFilter(filter); }
+  getMemberFilter(fieldName: string): Promise<IFMMemberFilterEntryOutputParams> { return this._eCharts.getMemberFilter(fieldName); }
+  setMemberFilter(filter: IFMMemberFilterEntryInputParams): Promise<void> { return this._eCharts.setMemberFilter(filter); }
   clearMemberFilter(fieldName: string): Promise<void> { return this._eCharts.clearMemberFilter(fieldName); }
-  getConditionalFilters(fieldName: string): Promise<FilterOutputParams[]> { return this._eCharts.getConditionalFilters(fieldName); }
-  setConditionalFilters(filters: FilterInputParams[]): Promise<void> { return this._eCharts.setConditionalFilters(filters); }
-  addConditionalFilter(filter: FilterInputParams): Promise<void> { return this._eCharts.addConditionalFilter(filter); }
+  getConditionalFilters(fieldName: string): Promise<FMFilterEntryOutputParams[]> { return this._eCharts.getConditionalFilters(fieldName); }
+  setConditionalFilters(filters: FMFilterEntryInputParams[]): Promise<void> { return this._eCharts.setConditionalFilters(filters); }
+  addConditionalFilter(filter: FMFilterEntryInputParams): Promise<void> { return this._eCharts.addConditionalFilter(filter); }
   clearConditionalFilters(fieldName: string): Promise<void> { return this._eCharts.clearConditionalFilters(fieldName); }
   hasSort(): Promise<boolean> { return this._eCharts.hasSort(); }
-  getSort(): Promise<SortOutputParams[]> { return this._eCharts.getSort(); }
-  setSort(sort: SortInputParams[]): Promise<void> { return this._eCharts.setSort(sort); }
-  addSort(sort: SortInputParams): Promise<void> { return this._eCharts.addSort(sort); }
+  getSort(): Promise<FMSortOutputParams[]> { return this._eCharts.getSort(); }
+  setSort(sort: FMSortInputParams[]): Promise<void> { return this._eCharts.setSort(sort); }
+  addSort(sort: FMSortInputParams): Promise<void> { return this._eCharts.addSort(sort); }
   clearSort(): Promise<void> { return this._eCharts.clearSort(); }
   hasMemberSort(fieldName: string): Promise<boolean> { return this._eCharts.hasMemberSort(fieldName); }
-  getMemberSort(fieldName: string): Promise<MemberSortOutputParams> { return this._eCharts.getMemberSort(fieldName); }
-  setMemberSort(sort: MemberSortInputParams): Promise<void> { return this._eCharts.setMemberSort(sort); }
+  getMemberSort(fieldName: string): Promise<IFMMemberSortOutputParams> { return this._eCharts.getMemberSort(fieldName); }
+  setMemberSort(sort: IFMMemberSortInputParams): Promise<void> { return this._eCharts.setMemberSort(sort); }
   clearMemberSort(fieldName?: string): Promise<void> { return this._eCharts.clearMemberSort(fieldName); }
-  getDataLimits(): IChartDataLimitsOutputParams { return this._eCharts.getDataLimits(); }
-  getReport(): ReportOutputParams { return this._eCharts.getReport(); }
-  setReport(report: ReportInputParams): void { this._eCharts.setReport(report); }
-  getSlice(): Promise<ChartSliceOutputParams> { return this._eCharts.getSlice(); }
-  setSlice(slice: ChartSliceInputParams): Promise<void> { return this._eCharts.setSlice(slice); }
+  getDataLimits(): IFMChartDataLimitsOutputParams { return this._eCharts.getDataLimits(); }
+  getReport(): IFMReportOutputParams { return this._eCharts.getReport(); }
+  setReport(report: IFMReportInputParams): void { this._eCharts.setReport(report); }
+  getSlice(): Promise<IFMChartSliceOutputParams> { return this._eCharts.getSlice(); }
+  setSlice(slice: IFMChartSliceInputParams): Promise<void> { return this._eCharts.setSlice(slice); }
 }
 
 export const FMCharts = {

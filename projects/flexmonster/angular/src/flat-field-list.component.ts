@@ -3,7 +3,7 @@ import {
   FlatFieldList,
   type IFMFlatFieldList,
   type IFMFlatFieldListOptionsInputParams,
-  type StateInputParams,
+  type IFMStateInputParams,
 } from '@flexmonster/js';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -13,7 +13,7 @@ import { FM_STATE_CONTEXT } from './state-context';
   template: '<div class="fm-ng-wrapper" style="width:100%;height:100%;"></div>',
 })
 export class FMFlatFieldList implements AfterViewInit, OnDestroy, IFMFlatFieldList {
-  @Input() state: StateInputParams | undefined;
+  @Input() state: IFMStateInputParams | undefined;
   @Input() options: IFMFlatFieldListOptionsInputParams | undefined;
 
   protected root: HTMLElement;

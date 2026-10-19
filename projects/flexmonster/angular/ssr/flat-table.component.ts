@@ -1,5 +1,5 @@
 import { Component, inject, Input, ViewContainerRef } from '@angular/core';
-import type { IFMFlatTable, IFMFlatTableOptionsInputParams, StateInputParams } from '@flexmonster/js';
+import type { IFMFlatTable, IFMFlatTableOptionsInputParams, IFMStateInputParams } from '@flexmonster/js';
 import { FMSsrBase } from './flexmonster-ssr-base.component';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -9,7 +9,7 @@ import { FM_STATE_CONTEXT } from './state-context';
   template: '',
 })
 export class FMFlatTable extends FMSsrBase {
-  @Input() state: StateInputParams | undefined;
+  @Input() state: IFMStateInputParams | undefined;
   @Input() options: IFMFlatTableOptionsInputParams | undefined;
   @Input() name: string | undefined;
 
