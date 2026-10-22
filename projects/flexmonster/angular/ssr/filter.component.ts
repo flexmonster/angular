@@ -1,5 +1,5 @@
 import { Component, inject, Input, ViewContainerRef } from '@angular/core';
-import type { IFilterOptionsInputParams, IFMFilter, StateInputParams } from '@flexmonster/js';
+import type { IFMFilterOptionsInputParams, IFMFilter, IFMStateInputParams } from '@flexmonster/js';
 import { FMSsrBase } from './flexmonster-ssr-base.component';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -9,8 +9,8 @@ import { FM_STATE_CONTEXT } from './state-context';
   template: '',
 })
 export class FMFilter extends FMSsrBase {
-  @Input() state: StateInputParams | undefined;
-  @Input() options: IFilterOptionsInputParams | undefined;
+  @Input() state: IFMStateInputParams | undefined;
+  @Input() options: IFMFilterOptionsInputParams | undefined;
   @Input() fieldName: string | undefined;
 
   public filter!: IFMFilter;

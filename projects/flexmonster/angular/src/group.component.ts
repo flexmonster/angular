@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import type { StateInputParams } from '@flexmonster/js';
+import type { IFMStateInputParams } from '@flexmonster/js';
 import { FM_STATE_CONTEXT, type FMStateContext } from './state-context';
 
 @Component({
@@ -9,5 +9,5 @@ import { FM_STATE_CONTEXT, type FMStateContext } from './state-context';
   providers: [{ provide: FM_STATE_CONTEXT, useExisting: forwardRef(() => FMGroup) }],
 })
 export class FMGroup implements FMStateContext {
-  @Input() state: StateInputParams | undefined;
+  @Input() state: IFMStateInputParams | undefined;
 }

@@ -1,5 +1,5 @@
 import { Component, inject, Input, ViewContainerRef } from '@angular/core';
-import type { IFMFlatFieldList, IFMFlatFieldListOptionsInputParams, StateInputParams } from '@flexmonster/js';
+import type { IFMFlatFieldList, IFMFlatFieldListOptionsInputParams, IFMStateInputParams } from '@flexmonster/js';
 import { FMSsrBase } from './flexmonster-ssr-base.component';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -9,7 +9,7 @@ import { FM_STATE_CONTEXT } from './state-context';
   template: '',
 })
 export class FMFlatFieldList extends FMSsrBase {
-  @Input() state: StateInputParams | undefined;
+  @Input() state: IFMStateInputParams | undefined;
   @Input() options: IFMFlatFieldListOptionsInputParams | undefined;
 
   public flatFieldList!: IFMFlatFieldList;

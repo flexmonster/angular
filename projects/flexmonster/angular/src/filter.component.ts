@@ -2,12 +2,12 @@ import { AfterViewInit, Component, ElementRef, inject, Input, OnDestroy } from '
 import {
   Filter,
   type IFMFilter,
-  type IFilterOptionsInputParams,
-  type StateInputParams,
-  type MemberFilterControlInputParams,
-  type MemberFilterControlOutputParams,
-  type ConditionalFilterControlInputParams,
-  type ConditionalFilterControlOutputParams,
+  type IFMFilterOptionsInputParams,
+  type IFMStateInputParams,
+  type IFMMemberFilterInputParams,
+  type IFMMemberFilterOutputParams,
+  type IFMConditionalFilterInputParams,
+  type IFMConditionalFilterOutputParams,
 } from '@flexmonster/js';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -17,8 +17,8 @@ import { FM_STATE_CONTEXT } from './state-context';
   template: '<div class="fm-ng-wrapper" style="width:100%;height:100%;"></div>',
 })
 export class FMFilter implements AfterViewInit, OnDestroy, IFMFilter {
-  @Input() state: StateInputParams | undefined;
-  @Input() options: IFilterOptionsInputParams | undefined;
+  @Input() state: IFMStateInputParams | undefined;
+  @Input() options: IFMFilterOptionsInputParams | undefined;
   @Input() fieldName: string | undefined;
 
   protected root: HTMLElement;
@@ -48,12 +48,12 @@ export class FMFilter implements AfterViewInit, OnDestroy, IFMFilter {
 
   getOptions(): any { return this._filter.getOptions(); }
   dispose(): void { this._filter.dispose(); }
-  getMemberFilter(): Promise<MemberFilterControlOutputParams> { return this._filter.getMemberFilter(); }
-  setMemberFilter(filter: MemberFilterControlInputParams): Promise<void> { return this._filter.setMemberFilter(filter); }
+  getMemberFilter(): Promise<IFMMemberFilterOutputParams> { return this._filter.getMemberFilter(); }
+  setMemberFilter(filter: IFMMemberFilterInputParams): Promise<void> { return this._filter.setMemberFilter(filter); }
   clearMemberFilter(): Promise<void> { return this._filter.clearMemberFilter(); }
-  getConditionalFilters(): Promise<ConditionalFilterControlOutputParams[]> { return this._filter.getConditionalFilters(); }
-  addConditionalFilter(filter: ConditionalFilterControlInputParams): Promise<void> { return this._filter.addConditionalFilter(filter); }
-  setConditionalFilters(filters: ConditionalFilterControlInputParams[]): Promise<void> { return this._filter.setConditionalFilters(filters); }
+  getConditionalFilters(): Promise<IFMConditionalFilterOutputParams[]> { return this._filter.getConditionalFilters(); }
+  addConditionalFilter(filter: IFMConditionalFilterInputParams): Promise<void> { return this._filter.addConditionalFilter(filter); }
+  setConditionalFilters(filters: IFMConditionalFilterInputParams[]): Promise<void> { return this._filter.setConditionalFilters(filters); }
   clearConditionalFilters(): Promise<void> { return this._filter.clearConditionalFilters(); }
   getSortOrder(): Promise<string> { return this._filter.getSortOrder(); }
   setSortOrder(order: string): Promise<void> { return this._filter.setSortOrder(order); }

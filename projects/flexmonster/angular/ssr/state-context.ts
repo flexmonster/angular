@@ -1,8 +1,8 @@
 import { InjectionToken } from '@angular/core';
-import type { StateInputParams } from '@flexmonster/js';
+import type { IFMStateInputParams } from '@flexmonster/js';
 
 export interface FMStateContext {
-  readonly state: StateInputParams | undefined;
+  readonly state: IFMStateInputParams | undefined;
 }
 
 export const FM_STATE_CONTEXT = new InjectionToken<FMStateContext>('FM_STATE_CONTEXT');

@@ -3,23 +3,23 @@ import {
   Flexmonster,
   type IFMFlexmonster,
   type IFMFlexmonsterOptionsInputParams,
-  type StateInputParams,
-  type FilterInputParams,
-  type FilterOutputParams,
-  type MemberFilterInputParams,
-  type MemberFilterOutputParams,
-  type MemberSortInputParams,
-  type MemberSortOutputParams,
-  type IGridCellObject,
-  type ReportInputParams,
-  type ReportOutputParams,
-  SortInputParams,
-  SortOutputParams,
-  type FlatSortInputParams,
-  type FlatSortOutputParams,
+  type IFMStateInputParams,
+  type FMFilterEntryInputParams,
+  type FMFilterEntryOutputParams,
+  type IFMMemberFilterEntryInputParams,
+  type IFMMemberFilterEntryOutputParams,
+  type IFMMemberSortInputParams,
+  type IFMMemberSortOutputParams,
+  type IFMGridCellObject,
+  type IFMReportInputParams,
+  type IFMReportOutputParams,
+  FMSortInputParams,
+  FMSortOutputParams,
+  type IFMFlatSortInputParams,
+  type IFMFlatSortOutputParams,
   type FMFlexmonsterViewType,
-  type SliceInputParams,
-  type SliceOutputParams,
+  type IFMSliceInputParams,
+  type IFMSliceOutputParams,
 } from '@flexmonster/js';
 import { FM_STATE_CONTEXT } from './state-context';
 
@@ -29,7 +29,7 @@ import { FM_STATE_CONTEXT } from './state-context';
   template: '<div class="fm-ng-wrapper" style="width:100%;height:100%;"></div>',
 })
 export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
-  @Input() state: StateInputParams | undefined;
+  @Input() state: IFMStateInputParams | undefined;
   @Input() options: IFMFlexmonsterOptionsInputParams | undefined;
 
   protected root: HTMLElement;
@@ -58,39 +58,39 @@ export class FMFlexmonster implements AfterViewInit, OnDestroy, IFMFlexmonster {
   get active(): boolean { return this._flexmonster.active; }
 
   hasFilter(fieldName?: string): Promise<boolean> { return this._flexmonster.hasFilter(fieldName); }
-  getFilters(fieldName?: string): Promise<FilterOutputParams[]> { return this._flexmonster.getFilters(fieldName); }
-  setFilters(filter: FilterInputParams[]): Promise<void> { return this._flexmonster.setFilters(filter); }
+  getFilters(fieldName?: string): Promise<FMFilterEntryOutputParams[]> { return this._flexmonster.getFilters(fieldName); }
+  setFilters(filter: FMFilterEntryInputParams[]): Promise<void> { return this._flexmonster.setFilters(filter); }
   clearFilters(fieldName?: string): Promise<void> { return this._flexmonster.clearFilters(fieldName); }
-  getMemberFilter(fieldName: string): Promise<MemberFilterOutputParams> { return this._flexmonster.getMemberFilter(fieldName); }
-  setMemberFilter(filter: MemberFilterInputParams): Promise<void> { return this._flexmonster.setMemberFilter(filter); }
+  getMemberFilter(fieldName: string): Promise<IFMMemberFilterEntryOutputParams> { return this._flexmonster.getMemberFilter(fieldName); }
+  setMemberFilter(filter: IFMMemberFilterEntryInputParams): Promise<void> { return this._flexmonster.setMemberFilter(filter); }
   clearMemberFilter(fieldName: string): Promise<void> { return this._flexmonster.clearMemberFilter(fieldName); }
-  getConditionalFilters(fieldName: string): Promise<FilterOutputParams[]> { return this._flexmonster.getConditionalFilters(fieldName); }
-  setConditionalFilters(filters: FilterInputParams[]): Promise<void> { return this._flexmonster.setConditionalFilters(filters); }
-  addConditionalFilter(filter: FilterInputParams): Promise<void> { return this._flexmonster.addConditionalFilter(filter); }
+  getConditionalFilters(fieldName: string): Promise<FMFilterEntryOutputParams[]> { return this._flexmonster.getConditionalFilters(fieldName); }
+  setConditionalFilters(filters: FMFilterEntryInputParams[]): Promise<void> { return this._flexmonster.setConditionalFilters(filters); }
+  addConditionalFilter(filter: FMFilterEntryInputParams): Promise<void> { return this._flexmonster.addConditionalFilter(filter); }
   clearConditionalFilters(fieldName: string): Promise<void> { return this._flexmonster.clearConditionalFilters(fieldName); }
   hasSort(): Promise<boolean> { return this._flexmonster.hasSort(); }
-  getSort(): Promise<SortOutputParams[]> { return this._flexmonster.getSort(); }
-  setSort(sort: SortInputParams[]): Promise<void> { return this._flexmonster.setSort(sort); }
-  addSort(sort: SortInputParams): Promise<void> { return this._flexmonster.addSort(sort); }
+  getSort(): Promise<FMSortOutputParams[]> { return this._flexmonster.getSort(); }
+  setSort(sort: FMSortInputParams[]): Promise<void> { return this._flexmonster.setSort(sort); }
+  addSort(sort: FMSortInputParams): Promise<void> { return this._flexmonster.addSort(sort); }
   clearSort(): Promise<void> { return this._flexmonster.clearSort(); }
   hasFlatSort(fieldName?: string): Promise<boolean> { return this._flexmonster.hasFlatSort(fieldName); }
-  getFlatSort(fieldName?: string): Promise<FlatSortOutputParams[]> { return this._flexmonster.getFlatSort(fieldName); }
-  setFlatSort(sort: FlatSortInputParams[]): Promise<void> { return this._flexmonster.setFlatSort(sort); }
-  addFlatSort(sort: FlatSortInputParams): Promise<void> { return this._flexmonster.addFlatSort(sort); }
+  getFlatSort(fieldName?: string): Promise<IFMFlatSortOutputParams[]> { return this._flexmonster.getFlatSort(fieldName); }
+  setFlatSort(sort: IFMFlatSortInputParams[]): Promise<void> { return this._flexmonster.setFlatSort(sort); }
+  addFlatSort(sort: IFMFlatSortInputParams): Promise<void> { return this._flexmonster.addFlatSort(sort); }
   clearFlatSort(fieldName?: string): Promise<void> { return this._flexmonster.clearFlatSort(fieldName); }
   hasMemberSort(fieldName: string): Promise<boolean> { return this._flexmonster.hasMemberSort(fieldName); }
-  getMemberSort(fieldName: string): Promise<MemberSortOutputParams> { return this._flexmonster.getMemberSort(fieldName); }
-  setMemberSort(sort: MemberSortInputParams): Promise<void> { return this._flexmonster.setMemberSort(sort); }
+  getMemberSort(fieldName: string): Promise<IFMMemberSortOutputParams> { return this._flexmonster.getMemberSort(fieldName); }
+  setMemberSort(sort: IFMMemberSortInputParams): Promise<void> { return this._flexmonster.setMemberSort(sort); }
   clearMemberSort(fieldName?: string): Promise<void> { return this._flexmonster.clearMemberSort(fieldName); }
-  getSlice(): Promise<SliceOutputParams> { return this._flexmonster.getSlice(); }
-  setSlice(slice: SliceInputParams): Promise<void> { return this._flexmonster.setSlice(slice); }
-  getReport(): ReportOutputParams { return this._flexmonster.getReport(); }
-  setReport(report: ReportInputParams): void { this._flexmonster.setReport(report); }
+  getSlice(): Promise<IFMSliceOutputParams> { return this._flexmonster.getSlice(); }
+  setSlice(slice: IFMSliceInputParams): Promise<void> { return this._flexmonster.setSlice(slice); }
+  getReport(): IFMReportOutputParams { return this._flexmonster.getReport(); }
+  setReport(report: IFMReportInputParams): void { this._flexmonster.setReport(report); }
   closeFieldList(): void { this._flexmonster.closeFieldList(); }
   dispose(): void { this._flexmonster.dispose(); }
-  getCell(rowIndex: number, columnIndex: number): IGridCellObject { return this._flexmonster.getCell(rowIndex, columnIndex); }
+  getCell(rowIndex: number, columnIndex: number): IFMGridCellObject { return this._flexmonster.getCell(rowIndex, columnIndex); }
   getOptions(): any { return this._flexmonster.getOptions(); }
-  getSelectedCells(): IGridCellObject[] { return this._flexmonster.getSelectedCells(); }
+  getSelectedCells(): IFMGridCellObject[] { return this._flexmonster.getSelectedCells(); }
   openFieldList(): void { this._flexmonster.openFieldList(); }
   scrollToColumn(columnIndex: number): void { this._flexmonster.scrollToColumn(columnIndex); }
   scrollToRow(rowIndex: number): void { this._flexmonster.scrollToRow(rowIndex); }
